@@ -25,3 +25,5 @@ Route::get('/login', function () {
 
 Route::redirect('home','/pm/app/modules/admin/views/home.html');
 
+Route::redirect('login','login.html');
+
