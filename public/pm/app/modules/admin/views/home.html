@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html ng-app='app' class="loading semi-dark-layout" lang="en" data-layout="semi-dark-layout" data-textdirection="ltr">
+<html ng-app='MyApp' class="loading semi-dark-layout" lang="en" data-layout="semi-dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>
@@ -47,22 +47,24 @@
     <!-- -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js" integrity="sha512-5zOAub3cIpqklnKmM05spv4xttemFDlbBrmRexWiP0aWV8dlayEGciapAjBQWA7lgQsxPY6ay0oIUVtY/pivXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"
+            integrity="sha512-5zOAub3cIpqklnKmM05spv4xttemFDlbBrmRexWiP0aWV8dlayEGciapAjBQWA7lgQsxPY6ay0oIUVtY/pivXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-resource.min.js"></script>
 
 
     <script src="../../../../../app.js" type="text/javascript"></script>
-<!--
-    <script src="../../../../../assets/global/plugins/angularjs/angular.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/angular-cookies.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/angular-filter.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-ui-router.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/ngLocale/angular-locale_af-na.js"></script>
-    <script src="../../../../../assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js"></script>
--->
+    <!--
+        <script src="../../../../../assets/global/plugins/angularjs/angular.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/angular-cookies.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/angular-filter.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-ui-router.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/angular-resource.min.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/ngLocale/angular-locale_af-na.js"></script>
+        <script src="../../../../../assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js"></script>
+    -->
     <!--
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"
@@ -312,7 +314,7 @@
                     class="mr-50" data-feather="check-square"></i> Task</a><a class="dropdown-item"
                                                                               href="app-chat.html"><i class="mr-50"
                                                                                                       data-feather="message-square"></i>
-                    Chats</a>
+                    Search</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="page-account-settings.html"><i class="mr-50"
                                                                                   data-feather="settings"></i> Settings</a><a
@@ -490,7 +492,7 @@
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html"><i
                 data-feather="message-square"></i><span class="menu-title text-truncate"
-                                                        data-i18n="Chat">Chat</span></a>
+                                                        data-i18n="Chat">Search</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-todo.html"><i
                 data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Todo</span></a>
@@ -993,26 +995,24 @@
 <!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
-<div class="app-content content ">
+<div class="app-content content" ng-controller="allInfoCtrl">
 
     <section class="app-user-edit">
-        <div class="card" style="padding-left: 20px">
-            <div class="form-group " style="text-align:left">
-                <br/>
+        <div class="card" style="text-align: right ; padding: 10px">
+            <div class="form-group">
 
-                <div class="form-label">Sponsor Type</div>
-                <br/>
-                <div class="">
+                <div class="form-label">نوع الكفيل</div>
+                <div class="custom-controls-stacked">
                     <label for="first" class="custom-control custom-radio custom-control-inline">
-                        <input id="first" ng-click="option='personal'" ng-init="option='personal'" type="radio"
-                               class="custom-control-input" name="sponserType" value="0" >
-                        <span class="custom-control-label">personal</span>
+                        <input id="first" ng-click="option='personal'" type="radio"
+                               class="custom-control-input" name="sponserType" value="0">
+                        <span class="custom-control-label">شخصى</span>
                     </label>
-
                     <label for="organize" class="custom-control custom-radio custom-control-inline">
-                        <input id="organize2" ng-click="option='organize'" type="radio" class="custom-control-input"
-                               name="sponserType" value="1">
-                        <span class="custom-control-label">enterprise</span>
+                        <input id="organize" ng-click="option='organize'" ng-init="option='organize'" type="radio"
+                               class="custom-control-input"
+                               name="sponserType" value="1" checked>
+                        <span class="custom-control-label">مؤسسة</span>
                     </label>
 
                 </div>
@@ -1021,508 +1021,270 @@
         <!-- Account Tab starts -->
 
         <!-- personal -->
-        <div ng-controller="personal" ng-show="option ==='personal'" id="personal">
-            <div class="tab-pane active" aria-labelledby="account-tab" role="tabpanel">
-                <!-- users edit media object start -->
-                <div class="media mb-2">
-                    <div class="media-body mt-50">
-                        <h4>Eleanor Aguilar</h4>
-                        <div class="col-12 d-flex mt-1 px-0">
-                            <label class="btn btn-primary mr-75 mb-0 waves-effect waves-float waves-light"
-                                   for="change-picture">
-                                <span class="d-none d-sm-block">Change</span>
-                                <input class="form-control" type="file" id="change-picture3" hidden=""
-                                       accept="image/png, image/jpeg, image/jpg">
-                                <span class="d-block d-sm-none">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2" stroke-linecap="round"
-                                                             stroke-linejoin="round" class="feather feather-edit mr-0"><path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                    </span>
-                            </label>
-                            <button class="btn btn-outline-secondary d-none d-sm-block waves-effect">
-                                Remove
-                            </button>
-                            <button class="btn btn-outline-secondary d-block d-sm-none waves-effect">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round"
-                                     class="feather feather-trash-2 mr-0">
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path
-                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                </svg>
-                            </button>
+        <!-- personal -->
+        <div ng-controller="PersonalCtrl" ng-show="option ==='personal'" id="personal"
+             style="text-align: right ; padding: 10px">
+            <form class="card" novalidate>
+                <div class="card-body">
+                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
+
+                    <div class="form-label">بطاقة التعريف</div>
+                    <div class="custom-controls-stacked" style="text-align:right">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" ng-model="personal.identification_number_type"
+                                   class="custom-control-input" name="example-inline-radios" value="هوية">
+                            <span class="custom-control-label">هوية</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input"
+                                   ng-model="personal.identification_number_type" name="example-inline-radios"
+                                   value="جواز سفر" checked>
+                            <span class="custom-control-label">جواز سفر</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="col-md-5 " style="text-align:right">
+                        <div class="form-group">
+                            <label class="form-label" dir="rtl">رقم بطاقة التعريف</label>
+                            <input type="number" ng-model="personal.identification_number" min="1" class="form-control"
+                                   placeholder="الاسم" value="أحمد العفيفي">
+
                         </div>
+                    </div>
+                    <div class="row" style="text-align:right">
+
+                        <div class="col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الاسم الاول</label>
+                                <input type="text" ng-model="personal.first_name" class="form-control"
+                                       placeholder="Company" value="Chet">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">اسم الاب</label>
+                                <input type="text" ng-model="personal.sec_name" class="form-control"
+                                       placeholder="Last Name" value="Faker">
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">اسم الجد</label>
+                                <input type="text" ng-model="personal.third_name" class="form-control"
+                                       placeholder="Company" value="Chet">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الاسم الاخير</label>
+                                <input type="text" ng-model="personal.last_name" class="form-control"
+                                       placeholder="Last Name" value="Faker">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">المحافظة</label>
+
+                                <select name="example-select2" ng-model="personal.governorate_id"
+                                        class="control custom-select">
+                                    <option ng-repeat="governorate in governorates" value="{{governorate.id}}">
+                                        {{governorate.name}}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">المدينة</label>
+
+                                <select name="example-select2" ng-model="personal.city_id"
+                                        class="control custom-select">
+
+                                    <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الحى</label>
+
+                                <select name="example-select2" ng-model="personal.neighborhood_id"
+                                        class="control custom-select">
+                                    <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
+                                        {{neighborhood.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-form-group">
+                                <label class="form-label">تفاصيل العنوان</label>
+                                <input type="text" class="form-control" ng-model="personal.details" placeholder="City"
+                                       value="Melbourne">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الهاتف</label>
+                                <input type="text" class="form-control" ng-model="personal.telephone" placeholder="City"
+                                       value="Melbourne">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الجوال</label>
+                                <input type="number" class="form-control" ng-model="personal.phone_number"
+                                       placeholder="0592222222">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="form-label">البريد</label>
+                                <input type="text" class="form-control" ng-model="personal.email"
+                                       placeholder="xxxx@gmail.com">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الجنسية</label>
+
+                                <select name="example-select2" ng-model="personal.nationality_id"
+                                        class="form-control custom-select">
+
+                                    <option ng-repeat="nationalitie in nationalities" value="{{nationalitie.id}}">
+                                        {{nationalitie.name}}
+                                    </option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">دولة الاقامة</label>
+
+                                <select name="example-select2" ng-model="personal.country_id"
+                                        class="control custom-select">
+
+                                    <option ng-repeat="county in countries" value="{{county.id}}">{{county.name}}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer text-right">
+                        <button type="submit" ng-click="CreateNewPersonalSponsor()" class="btn btn-primary">انشاء حساب
+                            جديد
+                        </button>
                     </div>
                 </div>
-                <!-- users edit media object ends -->
-                <!-- users edit account form start -->
-                <form class="form-validate" novalidate="novalidate">
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" placeholder="Name"
-                                       value="Eleanor Aguilar" name="name" id="name">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control" placeholder="Email"
-                                       value="eleanor.aguilar@gmail.com" name="email" id="email">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select class="form-control" id="status">
-                                    <option>Active</option>
-                                    <option>Blocked</option>
-                                    <option>Deactivated</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="role">Role</label>
-                                <select class="form-control" id="role2">
-                                    <option>Admin</option>
-                                    <option>User</option>
-                                    <option>Staff</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" class="form-control" value="WinDon Technologies Pvt Ltd"
-                                       placeholder="Company name" id="2company">
-                            </div>
-                        </div>
-                        <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                            <button type="submit"
-                                    class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-float waves-light">
-                                Save Changes
-                            </button>
-                            <button type="reset" class="btn btn-outline-secondary waves-effect">Reset
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <!-- users edit account form ends -->
-            </div>
-        </div>
-        <!-- Account Tab ends -->
+            </form>
+        </div>        <!-- Account Tab ends -->
 
         <!-- Account Tab starts -->
         <!-- organize -->
 
-        <div ng-controller="organize" ng-show="option ==='organize'" id="organize">
-            <div class="tab-pane active" aria-labelledby="account-tab" role="tabpanel">
-                <!-- users edit media object start -->
-                <div class="media mb-2">
-                    <div class="media-body mt-50">
-                        <h4>Eleanor Aguilar</h4>
-                        <div class="col-12 d-flex mt-1 px-0">
-                            <label class="btn btn-primary mr-75 mb-0 waves-effect waves-float waves-light"
-                                   for="change-picture">
-                                <span class="d-none d-sm-block">Change</span>
-                                <input class="form-control" type="file" id="change-picture" hidden=""
-                                       accept="image/png, image/jpeg, image/jpg">
-                                <span class="d-block d-sm-none">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2" stroke-linecap="round"
-                                                             stroke-linejoin="round" class="feather feather-edit mr-0"><path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                    </span>
-                            </label>
-                            <button class="btn btn-outline-secondary d-none d-sm-block waves-effect">
-                                Remove
-                            </button>
-                            <button class="btn btn-outline-secondary d-block d-sm-none waves-effect">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round"
-                                     class="feather feather-trash-2 mr-0">
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path
-                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- users edit media object ends -->
-                <!-- users edit account form start -->
-                <form class="form-validate" novalidate="novalidate">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" placeholder="Username"
-                                       value="eleanor.aguilar" name="username" id="username">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" placeholder="Name"
-                                       value="Eleanor Aguilar" name="name" id="name2">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control" placeholder="Email"
-                                       value="eleanor.aguilar@gmail.com" name="email" id="2email">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select class="form-control" id="status2">
-                                    <option>Active</option>
-                                    <option>Blocked</option>
-                                    <option>Deactivated</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="role">Role</label>
-                                <select class="form-control" id="role">
-                                    <option>Admin</option>
-                                    <option>User</option>
-                                    <option>Staff</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" class="form-control" value="WinDon Technologies Pvt Ltd"
-                                       placeholder="Company name" id="company">
-                            </div>
-                        </div>
-                        <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                            <button type="submit"
-                                    class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-float waves-light">
-                                Save Changes
-                            </button>
-                            <button type="reset" class="btn btn-outline-secondary waves-effect">Reset
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <!-- users edit account form ends -->
-            </div>
-        </div>
-        <!-- Account Tab ends -->
+        <!-- organize -->
+        <div ng-controller="EnterpriseCtrl" ng-show="option ==='organize'">
 
 
-        <!-- Information Tab starts -->
-        <div class="tab-pane" id="information" aria-labelledby="information-tab" role="tabpanel">
-            <!-- users edit Info form start -->
-            <form class="form-validate" novalidate="novalidate">
-                <div class="row mt-1">
-                    <div class="col-12">
-                        <h4 class="mb-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-user font-medium-4 mr-25">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                            <span class="align-middle">Personal Information</span>
-                        </h4>
+            <form class="card" novalidate>
+                <div class="card-body">
+
+
+                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
+
+
+                    <div class="form-group col-md-4" style="text-align:right">
+                        <label class="form-label">دولة الاقامة</label>
+
+
+                        <select name="example-select2" class="control custom-select" ng-model="organize.country_id">
+
+                            <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+
+                        </select>
+
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="birth">Birth date</label>
-                            <input id="birth" type="text"
-                                   class="form-control birthdate-picker flatpickr-input" name="dob"
-                                   placeholder="YYYY-MM-DD" readonly="readonly">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="mobile">Mobile</label>
-                            <input id="mobile" type="text" class="form-control" value="+6595895857"
-                                   name="phone">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="website">Website</label>
-                            <input id="website" type="text" class="form-control"
-                                   placeholder="Website here..."
-                                   value="https://rowboat.com/insititious/Angelo" name="website">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="languages">Languages</label>
-                            <select id="languages" class="form-control">
-                                <option value="English">English</option>
-                                <option value="Spanish">Spanish</option>
-                                <option value="French" selected="">French</option>
-                                <option value="Russian">Russian</option>
-                                <option value="German">German</option>
-                                <option value="Arabic">Arabic</option>
-                                <option value="Sanskrit">Sanskrit</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label class="d-block mb-1">Gender</label>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="male" name="gender" class="custom-control-input">
-                                <label class="custom-control-label" for="male">Male</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="female" name="gender" class="custom-control-input"
-                                       checked="">
-                                <label class="custom-control-label" for="female">Female</label>
+
+                    <div class="row" style="text-align:right">
+
+                        <div class="col-md-12 " dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الاسم</label>
+                                <input type="text" ng-model="organize.name" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label class="d-block mb-1">Contact Options</label>
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                <input type="checkbox" class="custom-control-input" id="email-cb"
-                                       checked="">
-                                <label class="custom-control-label" for="email-cb">Email</label>
-                            </div>
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                <input type="checkbox" class="custom-control-input" id="message" checked="">
-                                <label class="custom-control-label" for="message">Message</label>
-                            </div>
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                <input type="checkbox" class="custom-control-input" id="phone">
-                                <label class="custom-control-label" for="phone">Phone</label>
+
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">مسؤول الاتصال</label>
+                                <input type="text" ng-model="organize.contact_person" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <h4 class="mb-1 mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-map-pin font-medium-4 mr-25">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            <span class="align-middle">Address</span>
-                        </h4>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="address-1">Address Line 1</label>
-                            <input id="address-1" type="text" class="form-control"
-                                   value="A-65, Belvedere Streets" name="address">
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">العنوان</label>
+                                <input type="text" ng-model="organize.address" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الهاتف1</label>
+                                <input type="number" ng-model="organize.first_telephone" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الهاتف2</label>
+                                <input type="number" ng-model="organize.sec_telephone" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">البريد</label>
+                                <input type="text" ng-model="organize.email" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
+                            </div>
+
+
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="address-2">Address Line 2</label>
-                            <input id="address-2" type="text" class="form-control"
-                                   placeholder="T-78, Groove Street">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="postcode">Postcode</label>
-                            <input id="postcode" type="text" class="form-control" placeholder="597626"
-                                   name="zip">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input id="city" type="text" class="form-control" value="New York" name="city">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="state">State</label>
-                            <input id="state" type="text" class="form-control" name="state"
-                                   placeholder="Manhattan">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input id="country" type="text" class="form-control" name="country"
-                                   placeholder="United States">
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                        <button type="submit"
-                                class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-float waves-light">
-                            Save Changes
-                        </button>
-                        <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
+                    <div class="card-footer text-right">
+                        <button type="submit" ng-click="myOrgFunc()" class="btn btn-primary">Update Profile</button>
                     </div>
                 </div>
+
             </form>
-            <!-- users edit Info form ends -->
-        </div>
-        <!-- Information Tab ends -->
+        </div>        <!-- Account Tab ends -->
 
-        <!-- Social Tab starts -->
-        <div class="tab-pane" id="social" aria-labelledby="social-tab" role="tabpanel">
-            <!-- users edit social form start -->
-            <form class="form-validate" novalidate="novalidate">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="twitter-input">Twitter</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon3">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-twitter font-medium-2"><path
-                                                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                                                        </span>
-                            </div>
-                            <input id="twitter-input" type="text" class="form-control"
-                                   value="https://www.twitter.com/adoptionism744"
-                                   placeholder="https://www.twitter.com/" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="facebook-input">Facebook</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon4">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-facebook font-medium-2"><path
-                                                                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                                                        </span>
-                            </div>
-                            <input id="facebook-input" type="text" class="form-control"
-                                   value="https://www.facebook.com/adoptionism664"
-                                   placeholder="https://www.facebook.com/" aria-describedby="basic-addon4">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="instagram-input">Instagram</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon5">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-instagram font-medium-2"><rect
-                                                                x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path
-                                                                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
-                                                                x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                                        </span>
-                            </div>
-                            <input id="instagram-input" type="text" class="form-control"
-                                   value="https://www.instagram.com/adopt-ionism744"
-                                   placeholder="https://www.instagram.com/" aria-describedby="basic-addon5">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="github-input">Github</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon9">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-github font-medium-2"><path
-                                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                                        </span>
-                            </div>
-                            <input id="github-input" type="text" class="form-control"
-                                   value="https://www.github.com/madop818"
-                                   placeholder="https://www.github.com/" aria-describedby="basic-addon9">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="codepen-input">Codepen</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon12">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-codepen font-medium-2"><polygon
-                                                                points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line
-                                                                x1="12" y1="22" x2="12" y2="15.5"></line><polyline
-                                                                points="22 8.5 12 15.5 2 8.5"></polyline><polyline
-                                                                points="2 15.5 12 8.5 22 15.5"></polyline><line x1="12"
-                                                                                                                y1="2"
-                                                                                                                x2="12"
-                                                                                                                y2="8.5"></line></svg>
-                                                        </span>
-                            </div>
-                            <input id="codepen-input" type="text" class="form-control"
-                                   value="https://www.codepen.com/adoptism243"
-                                   placeholder="https://www.codepen.com/" aria-describedby="basic-addon12">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 form-group">
-                        <label for="slack-input">Slack</label>
-                        <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon11">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                 height="14" viewBox="0 0 24 24" fill="none"
-                                                                 stroke="currentColor" stroke-width="2"
-                                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                                 class="feather feather-slack font-medium-2"><path
-                                                                d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"></path><path
-                                                                d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path><path
-                                                                d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"></path><path
-                                                                d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"></path><path
-                                                                d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"></path><path
-                                                                d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"></path><path
-                                                                d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"></path><path
-                                                                d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"></path></svg>
-                                                        </span>
-                            </div>
-                            <input id="slack-input" type="text" class="form-control" value="@adoptionism744"
-                                   placeholder="https://www.slack.com/" aria-describedby="basic-addon11">
-                        </div>
-                    </div>
-
-                    <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                        <button type="submit"
-                                class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-float waves-light">
-                            Save Changes
-                        </button>
-                        <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
-                    </div>
-                </div>
-            </form>
-            <!-- users edit social form ends -->
-        </div>
-        <!-- Social Tab ends -->
 
     </section>
 

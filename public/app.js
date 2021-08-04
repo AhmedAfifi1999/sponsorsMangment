@@ -1,80 +1,85 @@
-var Module = angular.module('app', ['ngRoute']);
+var Module = angular.module('MyApp', ['ngRoute']);
 
-Module.config(function ($stateProvider) {
+Module.controller('allInfoCtrl', function ($scope, $http) {
+    $scope.cities;
+    $scope.countries;
+    $scope.governorates;
+    $scope.nationalities;
+    $scope.neighborhoods;
 
-    $stateProvider
+    locationInfo = function () {
 
-        .state('login', {
-            url: '/login',
-            templateUrl: 'app/modules/admin/views/login.html',
-            params: {type: 'users'},
-            data: {pageTitle: 'LOGIN'},
-            controller: 'loginController',
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'loginController',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.css',
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.js',
-                            'app/modules/admin/services/services.js',
-                            'app.js'
-                        ]
-                    });
-                }]
-            }
-        })
-        .state('sponsor', {
-            url: 'sponsor',
-            templateUrl: 'app/modules/admin/views/sponsor.html',
-            data: {pageTitle: 'USERS'},
-            params: {type: 'users', id: null},
-            controller: 'SponsorController',
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'SponsorController',
-                        files: [
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.css',
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.js',
-                            'app/modules/admin/services/services.js',
-                            'app.js'
-                        ]
-                    });
-                }]
-            }
-        })
-        .state('home', {
-            url: '/home',
-            templateUrl: 'pm/app/modules/admin/home.html',
-            data: {pageTitle: 'HOME'},
-            params: {type: 'users', id: null},
-            controller: 'homeController',
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'SponsorController',
-                        files: [
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.css',
-                            'assets/global/plugins/angularjs/plugins/ui-select/select.min.js',
-                            'app/modules/admin/controllers/home.js',
-                            'app.js'
-                        ]
-                    });
-                }]
-            }
-        })
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/location'
+        }).then(function success(response) {
+            console.log(response['data'].cities);
+            console.log('------------------');
+            $scope.cities = response['data'].cities;
+            $scope.countries = response['data'].countries;
+            $scope.governorates = response['data'].governorates;
+            $scope.nationalities = response['data'].nationalities;
+            $scope.neighborhoods = response['data'].neighborhoods;
+
+
+        }, function error(response) {
+        });
+
+
+    }
+    locationInfo();
+
 
 });
 
 
-Module.controller('personal_filter', function ($scope, $http) {
+// allInfoCtrl
+Module.controller('PersonalCtrl', function ($scope, $http) {
+
+
+    $scope.CreateNewPersonalSponsor = function () {
+        $scope.personal.password = "123";
+        $scope.personal.password_confirmation = "123";
+        console.log($scope.personal);
+        var url = 'http://sponsorsmanagement.ps/api/personalSponsor/register',
+            data = $scope.personal,
+            config = 'content_type';
+
+
+        $http.post(url, data, config).then(function (response) {
+            console.log("insert Is Successfully")
+        }, function (response) {
+
+            console.log(response)
+        });
+
+    };
+
 
 });
 
 
-Module.controller('homeController', function ($scope, $http) {
+Module.controller('EnterpriseCtrl', function ($scope, $http) {
+//organize
+    $scope.myOrgFunc = function () {
+        $scope.organize.password = "123";
+        $scope.organize.password_confirmation = "123";
+
+        console.log($scope.organize);
+        var url = 'http://sponsorsmanagement.ps/api/enterprise/register',
+            data = $scope.organize,
+            config = 'content_type';
+
+
+        $http.post(url, data, config).then(function (response) {
+            console.log("insert Is Successfully")
+        }, function (response) {
+
+            console.log(response)
+        });
+
+
+    };
 
 });
 

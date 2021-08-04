@@ -11,6 +11,7 @@ use App\Http\Controllers\PersonalSponser\PersonalSponsorController as pSponsor;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SMSController;
 use App\Http\Controllers\GuaranteedController;
+use App\Http\Controllers\Enterprise\EnterpriseUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +24,9 @@ use App\Http\Controllers\GuaranteedController;
 */
 
 Route::post('personalSponsor/register', [pSponsorUser::class, 'register']);
+Route::post('enterprise/register', [EnterpriseUserController::class, 'register']);
+
+Route::get('location', [pSponsor::class, 'locationInfo'])->name('location_info');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

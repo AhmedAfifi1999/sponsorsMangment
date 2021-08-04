@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\PersonalSponser;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Governorate;
+use App\Models\Nationality;
+use App\Models\Neighborhood;
 use App\Models\personalSponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,4 +70,26 @@ class PersonalSponsorController extends Controller
 
     }
 
+
+    public function locationInfo()
+    {
+        $governorates = Governorate::all();
+        $cities = City::all();
+        $countries = Country::all();
+        $neighborhoods = Neighborhood::all();
+        $nationalities = Nationality::all();
+
+
+
+        return response()->json(
+            [
+                'governorates'=>$governorates,
+                'cities'=>$cities,
+                'countries'=>$countries ,
+                'neighborhoods'=>$neighborhoods ,
+                'nationalities'=>$nationalities
+            ]
+        );
+
+    }
 }

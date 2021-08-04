@@ -23,7 +23,7 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::redirect('home','/pm/app/modules/admin/views/home.html');
+Route::redirect('home2','/pm/app/modules/admin/views/home.html');
 
 Route::redirect('login','login.html');
 
