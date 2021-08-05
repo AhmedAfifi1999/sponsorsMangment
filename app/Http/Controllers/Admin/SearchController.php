@@ -83,8 +83,8 @@ class SearchController extends Controller
             $enterpriseSponsors
                 ->where('name', 'like', '%' . $request->name . '%');
 
-        $enterpriseSponsors = $enterpriseSponsors->paginate(10);
-
+//        $enterpriseSponsors = $enterpriseSponsors->paginate(10);
+        $enterpriseSponsors = $enterpriseSponsors->get();
         return response()->json([
             'status' => 1,
             'massage' => 'Search is Successfully',

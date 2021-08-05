@@ -1040,10 +1040,12 @@
                             <div class="form-group">
                                 <label class="form-label">المحافظة</label>
 
-                                <select name="example-select2" ng-model="searchPersonal.governorate_id"
+                                <select name="example-select2" ng-model="searchPersonal.neighborhood_id"
                                         class="control custom-select">
 
-                                    <option ng-repeat="governorate in governorates" value="{{governorate.id}}">{{governorate.name}}</option>
+                                    <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
+                                        {{neighborhood.name}}
+                                    </option>
 
                                 </select>
                             </div>
@@ -1067,7 +1069,9 @@
                                 <select name="example-select2" ng-model="searchPersonal.nationality_id"
                                         class="form-control custom-select">
 
-                                    <option ng-repeat="nationality in nationalities" value="{{nationality.id}}">{{nationality.name}}</option>
+                                    <option ng-repeat="nationality in nationalities" value="{{nationality.id}}">
+                                        {{nationality.name}}
+                                    </option>
 
 
                                 </select>
@@ -1080,7 +1084,8 @@
 
                                 <select name="example-select2" ng-model="searchPersonal.country_id"
                                         class="control custom-select">
-                                    <option ng-repeat="country in countries " value="{{country.id}}">{{country.name}}</option>
+                                    <option ng-repeat="country in countries " value="{{country.id}}">{{country.name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -1123,7 +1128,9 @@
 
                                 <tr ng-repeat="PersonalData in searchPersonalData">
                                     <td value="{{PersonalData.id}}">{{PersonalData.id}}</td>
-                                    <td>{{PersonalData.first_name}} , {{PersonalData.sec_name}} , {{PersonalData.third_name}} ,{{PersonalData.last_name}} </td>
+                                    <td>{{PersonalData.first_name}} , {{PersonalData.sec_name}} ,
+                                        {{PersonalData.third_name}} ,{{PersonalData.last_name}}
+                                    </td>
                                     <td>{{PersonalData.phone_number}}</td>
                                     <td>{{PersonalData.country.name}}</td>
                                     <td>{{PersonalData.details}}</td>
@@ -1160,9 +1167,150 @@
             <form class="card" novalidate>
                 <div class="card-body">
 
-                    <h1> here .></h1>
+                    <!-- organize -->
+                    <div id="organize3" ng-controller="OrganizeFilterCtrl" ng-show="option ==='organize'">
+                        <div class="col-md-12 " style="text-align:right">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الاسم</label>
+                                <input type="text" ng-model="searchOrganize.name" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <div class="col-md-4 col-md-5">
+                                <div class="form-group">
+                                    <label class="form-label">المحافظة</label>
+
+                                    <select name="example-select2" ng-model="searchOrganize.neighborhood_id"
+                                            class="control custom-select">
+                                        <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
+                                            {{neighborhood.name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-md-5">
+                                <div class="form-group">
+                                    <label class="form-label">المدينة</label>
+
+                                    <select name="example-select2" ng-model="searchOrganize.city_id"
+                                            class="control custom-select">
+                                        <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-md-5">
+                                <div class="form-group">
+                                    <label class="form-label">الجنسية</label>
+
+                                    <select name="example-select2" ng-model="searchOrganize.nationality_id"
+                                            class="control custom-select">
+                                        <option ng-repeat="nationality in nationalities" value="{{nationality.id}}">
+                                            {{nationality.name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-md-5">
+                                <div class="form-group">
+                                    <label class="form-label">الدولة</label>
+
+                                    <select name="example-select2" ng-model="searchOrganize.country_id"
+                                            class="control custom-select">
+                                        <option ng-repeat="country in countries" value="{{country.id}}">
+                                            {{country.name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-10 col-md-4">
+                                <label class="form-label" dir="rtl">الاسم</label>
+                                <input type="text" ng-model="searchOrganize.name" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+
+                            <div class="col-md-4 col-md-4">
+                                <label class="form-label" dir="rtl">رقم بطاقة تعريف الهوية</label>
+                                <input type="number" class="form-control" placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="col-md-4 col-md-4">
+                            <button type="button" class="btn btn-primary" ng-click="search_entprise_btn()">Search
+                            </button>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Invoices</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table card-table table-vcenter text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th class="w-1">No.</th>
+                                        <th>الاسم</th>
+                                        <th>contact_person</th>
+                                        <th>العنوان</th>
+                                        <th>الدولة</th>
+                                        <th>عدد المستفيدين</th>
+                                        <th>العمليات</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="organizeData in searchOrganizeData">
+                                        <td value="{{organizeData.id}}"><span
+                                            class="text-muted">{{organizeData.id}}</span></td>
+                                        <td>{{organizeData.name}}</td>
+                                        <td>
+                                            {{organizeData.contact_person}}
+                                        </td>
+                                        <td>
+                                            {{organizeData.address}}
+                                        </td>
+                                        <td>
+                                            {{organizeData.country.name}}
+                                        </td>
+                                        <td>
+                                            111
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown">Actions
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="icon" href="javascript:void(0)">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
+
 
             </form>
         </div>        <!-- Account Tab ends -->

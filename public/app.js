@@ -97,14 +97,12 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
 
         var url = 'http://sponsorsmanagement.ps/api/searchPersonalSponsor',
             data = $scope.searchPersonal,
-            config = {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            };
+            config = 'content_type';
 
+        console.log('data' + data);
         $http.post(url, data, config).then(function (response) {
-            $scope.searchPersonalData=response['data']['data'];
+            $scope.searchPersonalData = response['data']['data'];
+
             console.log($scope.searchPersonalData);
             console.log("insert Is Successfully")
         }, function (response) {
@@ -118,6 +116,32 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
 });
 
 Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
+    $scope.searchOrganizeData;
+
+    $scope.search_entprise_btn = function () {
+        console.log($scope.searchOrganize);
+
+        var token = window.localStorage.getItem('token');
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+        var url = 'http://sponsorsmanagement.ps/api/searchEnterpriseSponsor',
+            data = $scope.searchOrganize,
+            config = 'content_type';
+
+        $http.post(url, data, config).then(function (response) {
+            $scope.searchOrganizeData = response['data']['data'];
+
+            console.log($scope.searchOrganizeData);
+            console.log("insert Is Successfully")
+        }, function (response) {
+
+            console.log(response)
+        });
+
+
+
+    };
+
 
 });
 
