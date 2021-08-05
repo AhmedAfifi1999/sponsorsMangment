@@ -20,7 +20,7 @@ App.controller('loginController', function ($scope, $http) {
                 if (response['status'] === 200) {
                     window.location.href = "/pm/app/modules/admin/views/home.html";
                     console.log(response['data'].access_token);
-               //     $window.localStorage.setItem('token', response['data'].access_token);
+                    window.localStorage.setItem('token', response['data'].access_token);
 
                 }
             }, function (response) {

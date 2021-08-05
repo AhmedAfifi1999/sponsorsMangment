@@ -47,7 +47,7 @@ class SearchController extends Controller
                 ->orWhere('third_name', 'like', '%' . $request->name . '%')
                 ->orWhere('last_name', 'like', '%' . $request->name . '%');
 
-        $sponsors = $sponsors->paginate(10);
+        $sponsors = $sponsors->get();
 
         return response()->json([
             'status' => 1,
