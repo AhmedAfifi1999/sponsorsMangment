@@ -18,6 +18,8 @@ class CreateGuaranteedsTable extends Migration
             $table->string('name');
             $table->string('warranty_type');
             $table->integer('money');
+            $table->unsignedBigInteger('personal_sponsor_id')->nullable();;
+            $table->foreign('personal_sponsor_id')->references('id')->on('personal_sponsors')->nullOnDelete();
             $table->bigInteger('currency_id')->unsigned();
             $table->date('add_data');
             $table->timestamps();

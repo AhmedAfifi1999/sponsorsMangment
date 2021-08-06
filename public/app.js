@@ -106,10 +106,17 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
             console.log($scope.searchPersonalData);
             console.log("insert Is Successfully")
         }, function (response) {
+            if (response['status'] === 401) {
+                window.location.href = "http://sponsorsmanagement.ps/login.html";
 
+            }
             console.log(response)
         });
 
+
+    };
+
+    $scope.management_personal_sponsor = function ($id) {
 
     };
 
@@ -117,8 +124,7 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
 
 Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
     $scope.searchOrganizeData;
-
-    $scope.search_entprise_btn = function () {
+    $scope.search_enterprise_btn = function () {
         console.log($scope.searchOrganize);
 
         var token = window.localStorage.getItem('token');
@@ -134,13 +140,28 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
             console.log($scope.searchOrganizeData);
             console.log("insert Is Successfully")
         }, function (response) {
+            console.log();
 
-            console.log(response)
+            if (response['status'] === 401) {
+                window.location.href = "http://sponsorsmanagement.ps/login.html";
+
+            }
+
         });
 
 
-
     };
+
+    $scope.management_enterprise_sponsor = function (id) {
+        console.log(id);
+    };
+
+});
+
+//---- Manage Personal Sponsor "section"
+
+Module.controller('ManagePersonalCtrl', function ($scope, $http) {
+
 
 
 });

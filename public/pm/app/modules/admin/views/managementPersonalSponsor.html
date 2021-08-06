@@ -1000,7 +1000,6 @@
     <section class="app-user-edit">
         <div class="card" style="text-align: right ; padding: 10px">
             <div class="form-group">
-                <h2>البحث عن الكفلاء</h2>
 
                 <div class="form-label">نوع الكفيل</div>
                 <div class="custom-controls-stacked">
@@ -1023,135 +1022,173 @@
 
         <!-- personal -->
         <!-- personal -->
-        <div ng-controller="PersonalFilterCtrl" ng-show="option ==='personal'" id="personal"
-        >
+        <div ng-controller="PersonalCtrl" ng-show="option ==='personal'" id="personal"
+             style="text-align: right ; padding: 10px">
             <form class="card" novalidate>
                 <div class="card-body">
-                    <div class="col-md-12 col-md-12" style="text-align:right">
-                        <div class="form-group">
-                            <label class="form-label" dir="rtl">الاسم</label>
-                            <input type="text" ng-model="searchPersonal.name" class="form-control" placeholder="الاسم"
-                                   value="أحمد العفيفي">
+                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
 
-                        </div>
+                    <div class="form-label">بطاقة التعريف</div>
+                    <div class="custom-controls-stacked" style="text-align:right">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" ng-model="personal.identification_number_type"
+                                   class="custom-control-input" name="example-inline-radios" value="هوية">
+                            <span class="custom-control-label">هوية</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input"
+                                   ng-model="personal.identification_number_type" name="example-inline-radios"
+                                   value="جواز سفر" checked>
+                            <span class="custom-control-label">جواز سفر</span>
+                        </label>
+
                     </div>
-                    <div class="row col-md-12">
-                        <div class="col-md-4 col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">المحافظة</label>
-
-                                <select name="example-select2" ng-model="searchPersonal.neighborhood_id"
-                                        class="control custom-select">
-
-                                    <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
-                                        {{neighborhood.name}}
-                                    </option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">المدينة</label>
-                                <select name="example-select2" ng-model="searchPersonal.city_id"
-                                        class="control custom-select">
-                                    <option ng-repeat="city in cities " value="{{city.id}}">{{city.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">الجنسية</label>
 
 
-                                <select name="example-select2" ng-model="searchPersonal.nationality_id"
-                                        class="form-control custom-select">
-
-                                    <option ng-repeat="nationality in nationalities" value="{{nationality.id}}">
-                                        {{nationality.name}}
-                                    </option>
-
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">الدولة</label>
-
-                                <select name="example-select2" ng-model="searchPersonal.country_id"
-                                        class="control custom-select">
-                                    <option ng-repeat="country in countries " value="{{country.id}}">{{country.name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4 col-md-4">
-                            <label class="form-label" dir="rtl">رقم بطاقة تعريف الهوية</label>
-                            <input type="number" ng_modle="searchPersonal.identification_number" class="form-control"
+                    <div class="col-md-5 " style="text-align:right">
+                        <div class="form-group">
+                            <label class="form-label" dir="rtl">رقم بطاقة التعريف</label>
+                            <input type="number" ng-model="personal.identification_number" min="1" class="form-control"
                                    placeholder="الاسم" value="أحمد العفيفي">
 
                         </div>
+                    </div>
+                    <div class="row" style="text-align:right">
+
+                        <div class="col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الاسم الاول</label>
+                                <input type="text" ng-model="personal.first_name" class="form-control"
+                                       placeholder="Company" value="Chet">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">اسم الاب</label>
+                                <input type="text" ng-model="personal.sec_name" class="form-control"
+                                       placeholder="Last Name" value="Faker">
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">اسم الجد</label>
+                                <input type="text" ng-model="personal.third_name" class="form-control"
+                                       placeholder="Company" value="Chet">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الاسم الاخير</label>
+                                <input type="text" ng-model="personal.last_name" class="form-control"
+                                       placeholder="Last Name" value="Faker">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">المحافظة</label>
+
+                                <select name="example-select2" ng-model="personal.governorate_id"
+                                        class="control custom-select">
+                                    <option ng-repeat="governorate in governorates" value="{{governorate.id}}">
+                                        {{governorate.name}}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">المدينة</label>
+
+                                <select name="example-select2" ng-model="personal.city_id"
+                                        class="control custom-select">
+
+                                    <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الحى</label>
+
+                                <select name="example-select2" ng-model="personal.neighborhood_id"
+                                        class="control custom-select">
+                                    <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
+                                        {{neighborhood.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-form-group">
+                                <label class="form-label">تفاصيل العنوان</label>
+                                <input type="text" class="form-control" ng-model="personal.details" placeholder="City"
+                                       value="Melbourne">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الهاتف</label>
+                                <input type="text" class="form-control" ng-model="personal.telephone" placeholder="City"
+                                       value="Melbourne">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">الجوال</label>
+                                <input type="number" class="form-control" ng-model="personal.phone_number"
+                                       placeholder="0592222222">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="form-label">البريد</label>
+                                <input type="text" class="form-control" ng-model="personal.email"
+                                       placeholder="xxxx@gmail.com">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">الجنسية</label>
+
+                                <select name="example-select2" ng-model="personal.nationality_id"
+                                        class="form-control custom-select">
+
+                                    <option ng-repeat="nationalitie in nationalities" value="{{nationalitie.id}}">
+                                        {{nationalitie.name}}
+                                    </option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">دولة الاقامة</label>
+
+                                <select name="example-select2" ng-model="personal.country_id"
+                                        class="control custom-select">
+
+                                    <option ng-repeat="county in countries" value="{{county.id}}">{{county.name}}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
 
                     </div>
-                    <br>
-                    <div class="col-md-4 col-md-4">
-                        <button type="button" ng-click="search_personal_btn()" class="btn btn-primary">Primary</button>
-                    </div>
-                    <br>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Invoices</h3>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table ">
-                                <thead>
-                                <tr>
-                                    <th class="w-1">No.</th>
-                                    <th>الاسم</th>
-                                    <th>رقم الهاتف</th>
-                                    <th>الدولة</th>
-                                    <th>العنوان</th>
-                                    <th>عدد المستفيدين</th>
-                                    <th>العمليات</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr ng-repeat="PersonalData in searchPersonalData">
-                                    <td value="{{PersonalData.id}}">{{PersonalData.id}}</td>
-                                    <td>{{PersonalData.first_name}} , {{PersonalData.sec_name}} ,
-                                        {{PersonalData.third_name}} ,{{PersonalData.last_name}}
-                                    </td>
-                                    <td>{{PersonalData.phone_number}}</td>
-                                    <td>{{PersonalData.country.name}}</td>
-                                    <td>{{PersonalData.details}}</td>
-                                    <td>1222</td>
 
 
-                                    <td class="text-right ">
-                                        <button class="btn btn-secondary btn-sm " data-toggle="dropdown">ادارة</button>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary btn-sm " data-toggle="dropdown">send sms
-                                            </button>
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-                                </tbody>
-                            </table>
-
-                        </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" ng-click="CreateNewPersonalSponsor()" class="btn btn-primary">انشاء حساب
+                            جديد
+                        </button>
                     </div>
                 </div>
             </form>
@@ -1161,156 +1198,89 @@
         <!-- organize -->
 
         <!-- organize -->
-        <div ng-controller="OrganizeFilterCtrl" ng-show="option ==='organize'">
+        <div ng-controller="EnterpriseCtrl" ng-show="option ==='organize'">
 
 
             <form class="card" novalidate>
                 <div class="card-body">
 
-                    <!-- organize -->
-                    <div id="organize3" ng-controller="OrganizeFilterCtrl" ng-show="option ==='organize'">
-                        <div class="col-md-12 " style="text-align:right">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">الاسم</label>
-                                <input type="text" ng-model="searchOrganize.name" class="form-control"
-                                       placeholder="الاسم" value="أحمد العفيفي">
 
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <div class="col-md-4 col-md-5">
-                                <div class="form-group">
-                                    <label class="form-label">المحافظة</label>
+                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
 
-                                    <select name="example-select2" ng-model="searchOrganize.neighborhood_id"
-                                            class="control custom-select">
-                                        <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
-                                            {{neighborhood.name}}
-                                        </option>
 
-                                    </select>
-                                </div>
-                            </div>
+                    <div class="form-group col-md-4" style="text-align:right">
+                        <label class="form-label">دولة الاقامة</label>
 
-                            <div class="col-md-4 col-md-5">
-                                <div class="form-group">
-                                    <label class="form-label">المدينة</label>
 
-                                    <select name="example-select2" ng-model="searchOrganize.city_id"
-                                            class="control custom-select">
-                                        <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+                        <select name="example-select2" class="control custom-select" ng-model="organize.country_id">
 
-                                    </select>
-                                </div>
-                            </div>
+                            <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
 
-                            <div class="col-md-4 col-md-5">
-                                <div class="form-group">
-                                    <label class="form-label">الجنسية</label>
-
-                                    <select name="example-select2" ng-model="searchOrganize.nationality_id"
-                                            class="control custom-select">
-                                        <option ng-repeat="nationality in nationalities" value="{{nationality.id}}">
-                                            {{nationality.name}}
-                                        </option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-md-5">
-                                <div class="form-group">
-                                    <label class="form-label">الدولة</label>
-
-                                    <select name="example-select2" ng-model="searchOrganize.country_id"
-                                            class="control custom-select">
-                                        <option ng-repeat="country in countries" value="{{country.id}}">
-                                            {{country.name}}
-                                        </option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-10 col-md-4">
-                                <label class="form-label" dir="rtl">الاسم</label>
-                                <input type="text" ng-model="searchOrganize.name" class="form-control"
-                                       placeholder="الاسم" value="أحمد العفيفي">
-
-                            </div>
-
-                            <div class="col-md-4 col-md-4">
-                                <label class="form-label" dir="rtl">رقم بطاقة تعريف الهوية</label>
-                                <input type="number" class="form-control" placeholder="الاسم" value="أحمد العفيفي">
-
-                            </div>
-
-                        </div>
-                        <br>
-                        <div class="col-md-4 col-md-4">
-                            <button type="button" class="btn btn-primary" ng-click="search_enterprise_btn()">Search
-                            </button>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Invoices</h3>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap">
-                                    <thead>
-                                    <tr>
-                                        <th class="w-1">No.</th>
-                                        <th>الاسم</th>
-                                        <th>contact_person</th>
-                                        <th>العنوان</th>
-                                        <th>الدولة</th>
-                                        <th>عدد المستفيدين</th>
-                                        <th>العمليات</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr ng-repeat="organizeData in searchOrganizeData">
-                                        <td value="{{organizeData.id}}"><span
-                                            class="text-muted">{{organizeData.id}}</span></td>
-                                        <td>{{organizeData.name}}</td>
-                                        <td>
-                                            {{organizeData.contact_person}}
-                                        </td>
-                                        <td>
-                                            {{organizeData.address}}
-                                        </td>
-                                        <td>
-                                            {{organizeData.country.name}}
-                                        </td>
-                                        <td>
-                                            111
-                                        </td>
-                                        <td class="text-right" >
-                                            <a  class="btn btn-secondary btn-sm" href="managementPersonalSponsor.html?id={{organizeData.id}}" id="{{organizeData.id}}" >Manage</a>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary btn-sm "
-                                                       >Actions
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a class="icon" href="javascript:void(0)">
-                                                <i class="fe fe-edit"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </select>
 
                     </div>
 
-                </div>
+                    <div class="row" style="text-align:right">
 
+                        <div class="col-md-12 " dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الاسم</label>
+                                <input type="text" ng-model="organize.name" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">مسؤول الاتصال</label>
+                                <input type="text" ng-model="organize.contact_person" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">العنوان</label>
+                                <input type="text" ng-model="organize.address" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الهاتف1</label>
+                                <input type="number" ng-model="organize.first_telephone" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">الهاتف2</label>
+                                <input type="number" ng-model="organize.sec_telephone" class="form-control"
+                                       placeholder="الاسم" value="أحمد العفيفي">
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" dir="rtl">
+                            <div class="form-group">
+                                <label class="form-label" dir="rtl">البريد</label>
+                                <input type="text" ng-model="organize.email" class="form-control" placeholder="الاسم"
+                                       value="أحمد العفيفي">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" ng-click="myOrgFunc()" class="btn btn-primary">Update Profile</button>
+                    </div>
+                </div>
 
             </form>
         </div>        <!-- Account Tab ends -->
@@ -1321,18 +1291,6 @@
 </div>
 <!-- END: Content-->
 
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
-
-<!-- BEGIN: Footer-->
-<footer class="footer footer-static footer-light">
-    <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a
-        class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span
-        class="d-none d-sm-inline-block">, All rights Reserved</span></span><span
-        class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
-</footer>
-<button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
-<!-- END: Footer-->
 
 
 <!-- BEGIN: Vendor JS-->
