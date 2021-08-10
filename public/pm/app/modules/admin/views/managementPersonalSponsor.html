@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html ng-app='MyApp' class="loading semi-dark-layout" lang="en" data-layout="semi-dark-layout" data-textdirection="ltr">
+<html ng-app='managePersonalSponsor' class="loading semi-dark-layout" lang="en" data-layout="semi-dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>
@@ -54,6 +54,8 @@
 
 
     <script src="../../../../../app.js" type="text/javascript"></script>
+    <script src="../controller/mPersonalSponsor.js" type="text/javascript"></script>
+
     <!--
         <script src="../../../../../assets/global/plugins/angularjs/angular.min.js"></script>
         <script src="../../../../../assets/global/plugins/angularjs/angular-cookies.min.js"></script>
@@ -995,302 +997,202 @@
 <!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
-<div class="app-content content" ng-controller="allInfoCtrl">
+<div class="app-content content" ng-controller="updateCtrl">
 
     <section class="app-user-edit">
-        <div class="card" style="text-align: right ; padding: 10px">
-            <div class="form-group">
+        <div class="card" ng-controller="allInfoCtrl">
 
-                <div class="form-label">نوع الكفيل</div>
-                <div class="custom-controls-stacked">
-                    <label for="first" class="custom-control custom-radio custom-control-inline">
-                        <input id="first" ng-click="option='personal'" type="radio"
-                               class="custom-control-input" name="sponserType" value="0">
-                        <span class="custom-control-label">شخصى</span>
-                    </label>
-                    <label for="organize" class="custom-control custom-radio custom-control-inline">
-                        <input id="organize" ng-click="option='organize'" ng-init="option='organize'" type="radio"
-                               class="custom-control-input"
-                               name="sponserType" value="1" checked>
-                        <span class="custom-control-label">مؤسسة</span>
-                    </label>
 
+            <section id="multiple-column-form">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Guaranteed info</h4>
+                            </div>
+
+
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="row">
+                                        <div class="col-md-8 col-12">
+                                            <div class="demo-inline-spacing">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="identity" name="customRadio" class="custom-control-input"  ng-model="MpersonalSponsor.identity" checked="">
+                                                    <label class="custom-control-label" for="identity">identity</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="passport" name="customRadio"  ng-model="MpersonalSponsor.passport" class="custom-control-input">
+                                                    <label class="custom-control-label" for="passport">passport</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">identity number</label>
+                                                <input type="text" id="identity_id-column" class="form-control" placeholder="identity number" ng-value="raw.identity_number" ng-model="MpersonalSponsor.identity_number" name="identity-number-column">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">First Name</label>
+                                                <input type="text" id="first-name-column" ng-model="MpersonalSponsor.first_name" ng-value="raw.first_name"   class="form-control"  name="first_name" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">sec Name</label>
+                                                <input type="text" id="sec-name-column" ng-model="MpersonalSponsor.sec_name" ng-value="raw.sec_name" class="form-control" placeholder="sec Name" name="lname-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">third Name</label>
+                                                <input type="text" id="third-name-column" ng-model="MpersonalSponsor.third_name" ng-value="raw.third_name" class="form-control" placeholder="third Name" name="lname-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Last Name</label>
+                                                <input type="text"  ng-model="MpersonalSponsor.last_name" id="last-name-column" ng-value="raw.last_name"  class="form-control" placeholder="Last Name" name="lname-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Governorate">Governorate</label>
+                                                <div class="position-relative" data-select2-id="4">
+                                                    <select ng-model="MpersonalSponsor.governorate" class="form-control select2 select2-hidden-accessible" id="select-Governorate" name="select-country" data-select2-id="select-country" tabindex="-1" aria-hidden="true">
+                                                    <option ng-repeat="governorate in governorates" ng-selected="governorate.id===governorate_id" value="{{governorate.id}}" data-select2-id="2">{{governorate.name}}</option>
+                                                </select>
+                                                </div>
+                                        </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-City">City</label>
+                                                <div class="position-relative" data-select2-id="4">
+                                                    <select ng-model="MpersonalSponsor.city" class="form-control select2 select2-hidden-accessible" id="select-city" name="select-city" data-select2-id="select-country" tabindex="-1" aria-hidden="true">
+
+                                                        <option ng-repeat="city in cities" value="{{city.id}}" ng-selected="city.id===raw.city_id" >{{city.name}}</option>
+                                                </select>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Neighborhood">Neighborhood</label>
+                                                <div class="position-relative" data-select2-id="4">
+                                                    <select ng-model="MpersonalSponsor.neighborhood" class="form-control select2 select2-hidden-accessible" id="select-Neighborhood" name="select-Neighborhood" data-select2-id="select-country" tabindex="-1" aria-hidden="true">
+
+                                                        <option ng-repeat="neighborhood in neighborhoods" ng-selected="neighborhood.id===raw.neighborhood_id" value="{{neighborhood.id}}">
+                                                            {{neighborhood.name}}
+                                                        </option>
+                                                </select>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="country-floating">location details</label>
+                                                <input type="text" ng-model="MpersonalSponsor.location_details" id="country-floating" class="form-control" ng-value="raw.details" name="location_details" placeholder="location details">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Telephone</label>
+                                                <input type="text" ng-model="MpersonalSponsor.telephone" id="telephone" ng-value="raw.telephone" class="form-control" placeholder="telephone" name="telephone-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Phone</label>
+                                                <input type="text" ng-model="MpersonalSponsor.phone" ng-value="raw.phone_number" id="phone-column" class="form-control" placeholder="Phone" name="phone-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Email</label>
+                                                <input type="email" id="email-id-column" ng-value="raw.email" ng-model="MpersonalSponsor.email" class="form-control" placeholder="Email" name="email-id-column">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Nationality">Nationality</label>
+                                                <div class="position-relative" data-select2-id="4">
+                                                    <select ng-model="MpersonalSponsor.nationality" class="form-control select2 select2-hidden-accessible" id="select-Nationality" name="select-Nationality" data-select2-id="select-Nationality" tabindex="-1" aria-hidden="true">
+                                                    <option ng-repeat="nationality in nationalities"  ng-selected="nationality.id===raw.nationality_id" data-select2-id="2" value="{{nationality.id}}" >{{nationality.name}}</option>
+                                                </select>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Country">Country</label>
+                                                <div class="position-relative" data-select2-id="4">
+
+                                                    <select ng-model="MpersonalSponsor.country" class="form-control select2 select2-hidden-accessible" id="select-country" name="select-country" data-select2-id="select-country" tabindex="-1" aria-hidden="true">
+                                                    <option ng-repeat="country in countries" value="{{country.id}}"  ng-selected="country.id===raw.country_id" data-select2-id="2">{{country.name}}</option>
+                                                </select>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Neighborhood"></label>
+                                                <div class="position-relative" data-select2-id="4">
+                                                    <button type="submit" ng-click="sendSMS()" class="btn btn-warning waves-effect">Send SMS</button>
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button type="reset" ng-click="updatePersonalSponsor()" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
         </div>
         <!-- Account Tab starts -->
 
         <!-- personal -->
+
         <!-- personal -->
-        <div ng-controller="PersonalCtrl" ng-show="option ==='personal'" id="personal"
-             style="text-align: right ; padding: 10px">
-            <form class="card" novalidate>
-                <div class="card-body">
-                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
 
-                    <div class="form-label">بطاقة التعريف</div>
-                    <div class="custom-controls-stacked" style="text-align:right">
-                        <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" ng-model="personal.identification_number_type"
-                                   class="custom-control-input" name="example-inline-radios" value="هوية">
-                            <span class="custom-control-label">هوية</span>
-                        </label>
-                        <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input"
-                                   ng-model="personal.identification_number_type" name="example-inline-radios"
-                                   value="جواز سفر" checked>
-                            <span class="custom-control-label">جواز سفر</span>
-                        </label>
-
-                    </div>
-
-
-                    <div class="col-md-5 " style="text-align:right">
-                        <div class="form-group">
-                            <label class="form-label" dir="rtl">رقم بطاقة التعريف</label>
-                            <input type="number" ng-model="personal.identification_number" min="1" class="form-control"
-                                   placeholder="الاسم" value="أحمد العفيفي">
-
-                        </div>
-                    </div>
-                    <div class="row" style="text-align:right">
-
-                        <div class="col-sm-3 col-md-3">
-                            <div class="form-group">
-                                <label class="form-label">الاسم الاول</label>
-                                <input type="text" ng-model="personal.first_name" class="form-control"
-                                       placeholder="Company" value="Chet">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-2 col-md-2">
-                            <div class="form-group">
-                                <label class="form-label">اسم الاب</label>
-                                <input type="text" ng-model="personal.sec_name" class="form-control"
-                                       placeholder="Last Name" value="Faker">
-                            </div>
-                        </div>
-                        <div class="col-sm-2 col-md-2">
-                            <div class="form-group">
-                                <label class="form-label">اسم الجد</label>
-                                <input type="text" ng-model="personal.third_name" class="form-control"
-                                       placeholder="Company" value="Chet">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 col-md-3">
-                            <div class="form-group">
-                                <label class="form-label">الاسم الاخير</label>
-                                <input type="text" ng-model="personal.last_name" class="form-control"
-                                       placeholder="Last Name" value="Faker">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">المحافظة</label>
-
-                                <select name="example-select2" ng-model="personal.governorate_id"
-                                        class="control custom-select">
-                                    <option ng-repeat="governorate in governorates" value="{{governorate.id}}">
-                                        {{governorate.name}}
-                                    </option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">المدينة</label>
-
-                                <select name="example-select2" ng-model="personal.city_id"
-                                        class="control custom-select">
-
-                                    <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
-
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">الحى</label>
-
-                                <select name="example-select2" ng-model="personal.neighborhood_id"
-                                        class="control custom-select">
-                                    <option ng-repeat="neighborhood in neighborhoods" value="{{neighborhood.id}}">
-                                        {{neighborhood.name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-form-group">
-                                <label class="form-label">تفاصيل العنوان</label>
-                                <input type="text" class="form-control" ng-model="personal.details" placeholder="City"
-                                       value="Melbourne">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">الهاتف</label>
-                                <input type="text" class="form-control" ng-model="personal.telephone" placeholder="City"
-                                       value="Melbourne">
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group">
-                                <label class="form-label">الجوال</label>
-                                <input type="number" class="form-control" ng-model="personal.phone_number"
-                                       placeholder="0592222222">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">البريد</label>
-                                <input type="text" class="form-control" ng-model="personal.email"
-                                       placeholder="xxxx@gmail.com">
-
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">الجنسية</label>
-
-                                <select name="example-select2" ng-model="personal.nationality_id"
-                                        class="form-control custom-select">
-
-                                    <option ng-repeat="nationalitie in nationalities" value="{{nationalitie.id}}">
-                                        {{nationalitie.name}}
-                                    </option>
-
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">دولة الاقامة</label>
-
-                                <select name="example-select2" ng-model="personal.country_id"
-                                        class="control custom-select">
-
-                                    <option ng-repeat="county in countries" value="{{county.id}}">{{county.name}}
-                                    </option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="card-footer text-right">
-                        <button type="submit" ng-click="CreateNewPersonalSponsor()" class="btn btn-primary">انشاء حساب
-                            جديد
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>        <!-- Account Tab ends -->
-
-        <!-- Account Tab starts -->
-        <!-- organize -->
-
-        <!-- organize -->
-        <div ng-controller="EnterpriseCtrl" ng-show="option ==='organize'">
-
-
-            <form class="card" novalidate>
-                <div class="card-body">
-
-
-                    <h3 class="card-title" style="text-align:right">بيانات الكفيل</h3>
-
-
-                    <div class="form-group col-md-4" style="text-align:right">
-                        <label class="form-label">دولة الاقامة</label>
-
-
-                        <select name="example-select2" class="control custom-select" ng-model="organize.country_id">
-
-                            <option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="row" style="text-align:right">
-
-                        <div class="col-md-12 " dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">الاسم</label>
-                                <input type="text" ng-model="organize.name" class="form-control" placeholder="الاسم"
-                                       value="أحمد العفيفي">
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-12" dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">مسؤول الاتصال</label>
-                                <input type="text" ng-model="organize.contact_person" class="form-control"
-                                       placeholder="الاسم" value="أحمد العفيفي">
-
-                            </div>
-                        </div>
-                        <div class="col-md-12" dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">العنوان</label>
-                                <input type="text" ng-model="organize.address" class="form-control" placeholder="الاسم"
-                                       value="أحمد العفيفي">
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4" dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">الهاتف1</label>
-                                <input type="number" ng-model="organize.first_telephone" class="form-control"
-                                       placeholder="الاسم" value="أحمد العفيفي">
-
-                            </div>
-                        </div>
-                        <div class="col-md-4" dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">الهاتف2</label>
-                                <input type="number" ng-model="organize.sec_telephone" class="form-control"
-                                       placeholder="الاسم" value="أحمد العفيفي">
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12" dir="rtl">
-                            <div class="form-group">
-                                <label class="form-label" dir="rtl">البريد</label>
-                                <input type="text" ng-model="organize.email" class="form-control" placeholder="الاسم"
-                                       value="أحمد العفيفي">
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" ng-click="myOrgFunc()" class="btn btn-primary">Update Profile</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>        <!-- Account Tab ends -->
 
 
     </section>
 
 </div>
 <!-- END: Content-->
-
 
 
 <!-- BEGIN: Vendor JS-->

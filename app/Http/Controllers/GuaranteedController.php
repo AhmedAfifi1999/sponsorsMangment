@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\guaranteed;
+use App\Models\Guaranteed;
 use Illuminate\Http\Request;
 
 class GuaranteedController extends Controller
@@ -10,7 +10,7 @@ class GuaranteedController extends Controller
 
     public function index()
     {
-        $guaranteeds = guaranteed::all();
+        $guaranteeds = Guaranteed::all();
 
         return response()->json([
             'status' => 1,
@@ -36,7 +36,7 @@ class GuaranteedController extends Controller
 
         //Need Validation >>
         try {
-            $guaranteeds = guaranteed::create([
+            $guaranteeds = Guaranteed::create([
                 'name' => $request->name,
                 'warranty_type' => $request->warranty_type,
                 'add_data' => $request->add_data,
@@ -62,12 +62,12 @@ class GuaranteedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\guaranteed $guaranteed
+     * @param \App\Models\Guaranteed $guaranteed
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $guaranteeds = guaranteed::find($id);
+        $guaranteeds = Guaranteed::find($id);
 
         return response()->json([
             'status' => 1,
@@ -81,10 +81,10 @@ class GuaranteedController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\guaranteed $guaranteed
+     * @param \App\Models\Guaranteed $guaranteed
      * @return \Illuminate\Http\Response
      */
-    public function edit(guaranteed $guaranteed)
+    public function edit(Guaranteed $guaranteed)
     {
         //
     }
@@ -93,13 +93,13 @@ class GuaranteedController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\guaranteed $guaranteed
+     * @param \App\Models\Guaranteed $guaranteed
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
 
-        $guaranteed = guaranteed::find($request->id);
+        $guaranteed = Guaranteed::find($request->id);
         //$data = guaranteed::whereId($request->id)->update($request->all());
         $data = $guaranteed->update($request->all());
 
@@ -112,12 +112,12 @@ class GuaranteedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\guaranteed $guaranteed
+     * @param \App\Models\Guaranteed $guaranteed
      * @return \Illuminate\Http\Response
      */
     public function delete($id)
     {
-        $guaranteed = guaranteed::find($id);
+        $guaranteed = Guaranteed::find($id);
         $result = $guaranteed->delete();
 
     }

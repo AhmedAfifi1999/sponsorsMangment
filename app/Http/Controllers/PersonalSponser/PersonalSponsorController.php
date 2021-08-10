@@ -19,7 +19,7 @@ class PersonalSponsorController extends Controller
     {
         $id = Auth::guard('personal_sponsor')->user()->id;
 
-        $personalSponors = personalSponsor::get()->where('id', $id);
+        $personalSponors = personalSponsor::where('id', $id)->get();
 
         return response()->json([
             'status' => 1,

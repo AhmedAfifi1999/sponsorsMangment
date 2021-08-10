@@ -24,6 +24,8 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::redirect('home2','/pm/app/modules/admin/views/home.html');
+Route::redirect('managementPersonalSponsor','/pm/app/modules/admin/views/managementPersonalSponsor.html');
+
 
 Route::redirect('login','login.html');
 

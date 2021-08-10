@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SMSController;
 use App\Http\Controllers\GuaranteedController;
 use App\Http\Controllers\Enterprise\EnterpriseUserController;
+use App\Http\Controllers\Guaranteed\GuaranteedController as GuaranteedCtrl;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,15 @@ use App\Http\Controllers\Enterprise\EnterpriseUserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//----Guaranteed---
+/*
+Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.store');
+Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
+*/
+Route::resource('Guaranteed',GuaranteedCtrl::class);
+
+
+//-------
 
 Route::post('personalSponsor/register', [pSponsorUser::class, 'register']);
 Route::post('enterprise/register', [EnterpriseUserController::class, 'register']);
@@ -40,6 +50,8 @@ Route::group(['prefix' => 'personalSponsor'], function () {
     Route::post('login', [pSponsorUser::class, 'login']);
 });
 
+Route::get('personalSponsor/{id}', [PersonalSposorController::class, 'show']);
+
 
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('showPersonalSponsors', [PersonalSposorController::class, 'index']);
@@ -48,18 +60,18 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('searchEnterpriseSponsor',[SearchController::class,'searchEnterpriseSponsor']);
     Route::post('sendMassagePersonalSponsor',[SMSController::class,'sendMassagePersonalSponsor']);
 
-    //Guaranteeds
-    Route::post('store/guaranteed',[GuaranteedController::class,'store']);
-    Route::get('show/guaranteed/{id}',[GuaranteedController::class,'show']);
-    Route::post('update/guaranteed',[GuaranteedController::class,'update']);
+//    //Guaranteeds
+//    Route::post('store/guaranteed',[GuaranteedController::class,'store']);
+//    Route::get('show/guaranteed/{id}',[GuaranteedController::class,'show']);
+//    Route::post('update/guaranteed',[GuaranteedController::class,'update']);
 
 
 });
 
+Route::post('updatePersonalSponsorsInfo', [pSponsor::class, 'update']);
 
 Route::group(['middleware' => ['auth:personal_sponsor']], function () {
     Route::get('showPersonalSponsorsInfo', [pSponsor::class, 'index']);
-    Route::post('updatePersonalSponsorsInfo', [pSponsor::class, 'update']);
 
 
 });

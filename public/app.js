@@ -1,5 +1,32 @@
-var Module = angular.module('MyApp', ['ngRoute']);
+var Module = angular.module('MyApp', ['ui.router','ngResource']);
 
+
+Module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    // Redirect any unmatched url
+    $urlRouterProvider.otherwise("/search");
+
+    $stateProvider
+
+        .state('home', {
+            url: '/search',
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/search.html',
+            data: {pageTitle: 'HOME'},
+            params: {type: 'users', id: null},
+            controller: 'allInfoCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MyApp',
+                        files: [
+                            'app/modules/admin/controllers/home.js',
+                            'app.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+}]);
 Module.controller('allInfoCtrl', function ($scope, $http) {
     $scope.cities;
     $scope.countries;
@@ -116,7 +143,9 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
 
     };
 
-    $scope.management_personal_sponsor = function ($id) {
+    $scope.management_personal_sponsor = function (id) {
+        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id="+id;
+        console.log(id);
 
     };
 
@@ -152,7 +181,10 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 
     };
 
+
+
     $scope.management_enterprise_sponsor = function (id) {
+        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id="+id;
         console.log(id);
     };
 
@@ -161,6 +193,7 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 //---- Manage Personal Sponsor "section"
 
 Module.controller('ManagePersonalCtrl', function ($scope, $http) {
+
 
 
 

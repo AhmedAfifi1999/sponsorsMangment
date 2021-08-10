@@ -18,7 +18,7 @@ App.controller('loginController', function ($scope, $http) {
             $http.post(url, data, config).then(function (response) {
 
                 if (response['status'] === 200) {
-                    window.location.href = "/pm/app/modules/admin/views/home.html";
+                    window.location.href = "/home";
                     console.log(response['data'].access_token);
                     window.localStorage.setItem('token', response['data'].access_token);
 

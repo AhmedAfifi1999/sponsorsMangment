@@ -27,11 +27,12 @@ class CreatePersonalSponsorsTable extends Migration
             $table->bigInteger('country_id')->unsigned();
 
             $table->string('details');
-            $table->string('phone_number');
-            $table->string('telephone');
+            $table->string('phone_number')->nullable();
+            $table->string('telephone')->nullable();
             $table->string('email');
             $table->integer('identification_number');
             $table->string('identification_number_type');
+            $table->string('password')->nullable();
 
 
             $table->timestamp('created_at')->useCurrent();

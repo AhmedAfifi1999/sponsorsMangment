@@ -11,13 +11,13 @@ class PersonalSposorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin');
+        //  $this->middleware('admin');
 
     }
 
     public function index()
     {
-        $personalSponors=personalSponsor::get();
+        $personalSponors = personalSponsor::get();
 
         return response()->json([
             'status' => 1,
@@ -39,5 +39,27 @@ class PersonalSposorController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+
+        $user = personalSponsor::find($id);
+        $data = $user->update($request->all());
+        if (!$data) {
+
+            return response()->json([
+                'status' => 0,
+                'massage' => 'Update is Failed'
+            ]);
+
+        }
+
+        return response()->json([
+            'status' => 1,
+            'massage' => 'Update is Successfully',
+            'data' => $user
+        ], 200);
+
+
+    }
 
 }

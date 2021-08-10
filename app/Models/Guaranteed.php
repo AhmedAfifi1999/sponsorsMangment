@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class guaranteed extends Model
+class Guaranteed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'warranty_type', 'add_data', 'currency_id', 'money'];
+    protected $fillable = ['name', 'warranty_type','personal_sponsor_id', 'add_data', 'currency_id', 'money'];
 
     public function currency()
     {

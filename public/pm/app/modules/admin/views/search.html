@@ -1138,7 +1138,7 @@
 
 
                                     <td class="text-right ">
-                                        <button class="btn btn-secondary btn-sm " data-toggle="dropdown">ادارة</button>
+                                        <button class="btn btn-secondary btn-sm " ng-click="management_personal_sponsor(PersonalData.id)" data-toggle="dropdown">ادارة</button>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary btn-sm " data-toggle="dropdown">send sms
                                             </button>
@@ -1288,7 +1288,7 @@
                                             111
                                         </td>
                                         <td class="text-right" >
-                                            <a  class="btn btn-secondary btn-sm" href="managementPersonalSponsor.html?id={{organizeData.id}}" id="{{organizeData.id}}" >Manage</a>
+                                            <button  class="btn btn-secondary btn-sm" ng-click="management_enterprise_sponsor(organizeData.id)" id="{{organizeData.id}}" >Manage</button>
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary btn-sm "
                                                        >Actions
