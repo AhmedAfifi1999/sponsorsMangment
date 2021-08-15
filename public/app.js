@@ -31,6 +31,13 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/search.html',
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
+        })
+        .state('managementPersonalSponsor', {
+            url: '/managementPersonalSponsor.html/:id',
+            params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html',
+            // data: {pageTitle: 'HOME'},
+            controller: 'allInfoCtrl',
         });
 
     $urlRouterProvider.otherwise('/home');
@@ -207,7 +214,7 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 
 
     $scope.management_enterprise_sponsor = function (id) {
-        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id=" + id;
+        window.location.href = "managementPersonalSponsor.html/" + id;
         console.log(id);
     };
 
@@ -220,3 +227,67 @@ Module.controller('ManagePersonalCtrl', function ($scope, $http) {
 
 });
 
+Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $stateParams) {
+
+    $scope.id = $stateParams.id;
+    console.log('id = ' + $scope.id);
+
+    $scope.raw = {};
+    getPersonalSponsor = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/personalSponsor/' + $scope.id,
+            data: 'parameters'
+        }).then(function success(response) {
+            console.log(response);
+            console.log(response['data']['data'].identification_number_type);
+            if (response['data']['data'].identification_number_type === 'identity') {
+                document.getElementById("identity").checked = true;
+                document.getElementById("passport").checked = false;
+            } else if (response['data']['data'].identification_number_type === 'passport') {
+                document.getElementById("passport").checked = true;
+                document.getElementById("identity").checked = false;
+            }
+            $scope.raw = response['data']['data'];
+            console.log($scope.raw);
+
+        }, function error(response) {
+
+        });
+    };
+    getPersonalSponsor();
+    $scope.cities;
+    $scope.countries;
+    $scope.governorates;
+    $scope.nationalities;
+    $scope.neighborhoods;
+    locationInfo = function () {
+
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/location'
+        }).then(function success(response) {
+            console.log(response['data'].cities);
+            console.log('------------------');
+            $scope.cities = response['data'].cities;
+            $scope.countries = response['data'].countries;
+            $scope.governorates = response['data'].governorates;
+            $scope.nationalities = response['data'].nationalities;
+            $scope.neighborhoods = response['data'].neighborhoods;
+        }, function error(response) {
+        });
+    }
+    locationInfo();
+    $scope.MpersonalSponsor = {};
+    $scope.updatePersonalSponsor = function () {
+        console.log($scope.MpersonalSponsor);
+        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' + $scope.id,
+            data = $scope.MpersonalSponsor,
+            config = 'contenttype';
+        $http.put(url, data, config).then(function (response) {
+            console.log(response);
+        }, function (response) {
+            //
+        });
+    };
+});
