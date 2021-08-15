@@ -1,39 +1,68 @@
-var Module = angular.module('MyApp', ['ui.router','ngResource']);
+var Module = angular.module('MyApp', ['ui.router', 'ngResource']);
 
 
-Module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     // Redirect any unmatched url
-    $urlRouterProvider.otherwise("/search");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider
 
         .state('home', {
-            url: '/search',
-            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/search.html',
-            data: {pageTitle: 'HOME'},
+            url: '/home',
             params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/home.html',
+            // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'MyApp',
-                        files: [
-                            'app/modules/admin/controllers/home.js',
-                            'app.js'
-                        ]
-                    });
-                }]
-            }
+            // resolve: {
+            //     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+            //         return $ocLazyLoad.load({
+            //             name: 'MyApp',
+            //             files: [
+            //                 'app/modules/admin/controllers/home.js',
+            //                 'app.js'
+            //             ]
+            //         });
+            //     }]
+            // }
         })
+        .state('search', {
+            url: '/search',
+            params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/search.html',
+            // data: {pageTitle: 'HOME'},
+            controller: 'allInfoCtrl',
+        });
+
+    $urlRouterProvider.otherwise('/home');
 
 }]);
+Module.controller('AppController', function ($scope, $http) {
+
+
+});
+
+Module.controller('FooterController', function ($scope, $http) {
+
+
+});
+Module.controller('MeanMenuController', function ($scope, $http) {
+
+
+});
+Module.controller('HeaderController', function ($scope, $http) {
+
+
+});
+
 Module.controller('allInfoCtrl', function ($scope, $http) {
+
     $scope.cities;
     $scope.countries;
     $scope.governorates;
     $scope.nationalities;
     $scope.neighborhoods;
-
+    $scope.organize = {};
+    $scope.personal = {};
     locationInfo = function () {
 
         $http({
@@ -47,26 +76,15 @@ Module.controller('allInfoCtrl', function ($scope, $http) {
             $scope.governorates = response['data'].governorates;
             $scope.nationalities = response['data'].nationalities;
             $scope.neighborhoods = response['data'].neighborhoods;
-
-
         }, function error(response) {
         });
-
-
     }
     locationInfo();
-
-
-});
-
-
-// allInfoCtrl
-Module.controller('PersonalCtrl', function ($scope, $http) {
-
 
     $scope.CreateNewPersonalSponsor = function () {
         $scope.personal.password = "123";
         $scope.personal.password_confirmation = "123";
+        console.log('this is Personal Sponsor Data');
         console.log($scope.personal);
         var url = 'http://sponsorsmanagement.ps/api/personalSponsor/register',
             data = $scope.personal,
@@ -82,21 +100,13 @@ Module.controller('PersonalCtrl', function ($scope, $http) {
 
     };
 
-
-});
-
-
-Module.controller('EnterpriseCtrl', function ($scope, $http) {
-//organize
     $scope.myOrgFunc = function () {
         $scope.organize.password = "123";
         $scope.organize.password_confirmation = "123";
-
         console.log($scope.organize);
         var url = 'http://sponsorsmanagement.ps/api/enterprise/register',
             data = $scope.organize,
             config = 'content_type';
-
 
         $http.post(url, data, config).then(function (response) {
             console.log("insert Is Successfully")
@@ -107,6 +117,20 @@ Module.controller('EnterpriseCtrl', function ($scope, $http) {
 
 
     };
+
+
+});
+
+
+Module.controller('EnterpriseCtrl', function ($scope, $http) {
+    //organize
+
+});
+
+
+// allInfoCtrl
+Module.controller('PersonalCtrl', function ($scope, $http) {
+
 
 });
 
@@ -144,7 +168,7 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
     };
 
     $scope.management_personal_sponsor = function (id) {
-        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id="+id;
+        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id=" + id;
         console.log(id);
 
     };
@@ -182,9 +206,8 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
     };
 
 
-
     $scope.management_enterprise_sponsor = function (id) {
-        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id="+id;
+        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id=" + id;
         console.log(id);
     };
 
@@ -193,8 +216,6 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 //---- Manage Personal Sponsor "section"
 
 Module.controller('ManagePersonalCtrl', function ($scope, $http) {
-
-
 
 
 });
