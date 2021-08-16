@@ -222,9 +222,20 @@
                                             <div class="form-group" data-select2-id="5">
                                                 <label for="select-Neighborhood"></label>
                                                 <div class="position-relative" data-select2-id="4">
-                                                    <button type="submit" ng-click="sendSMS()"
-                                                            class="btn btn-warning waves-effect">Send SMS
-                                                    </button>
+
+                                                    <div class="form-modal-ex">
+                                                        <!-- Button trigger modal -->
+                                                        <button id="sendSmsBtn" type="button"
+                                                                class="btn btn-primary waves-effect"
+                                                                data-toggle="modal" data-target="#inlineForm">
+                                                            Send SMS
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div id="sendSmsModal" class="sms-modal">
+                                                            <p>this is test modal</p>
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -257,13 +268,3 @@
 <!-- BEGIN: Page JS-->
 <!-- END: Page JS-->
 
-<script>
-    $(window).on('load', function () {
-        if (feather) {
-            feather.replace({
-                width: 14,
-                height: 14
-            });
-        }
-    })
-</script>

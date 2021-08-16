@@ -1,0 +1,127 @@
+<!-- BEGIN: Content-->
+<div class="app-content content" ng-controller="updateEnterPriseSponsorCtrl">
+
+    <section class="app-user-edit">
+        <div class="card">
+
+
+            <section id="multiple-column-form">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Guaranteed info</h4>
+                            </div>
+
+
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">Name</label>
+                                                <input type="text" id="first-name-column"
+                                                       ng-model="raw.first_name" ng-value="raw.first_name"
+                                                       class="form-control" name="Name" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">contact person</label>
+                                                <input type="text" id="sec-name-column"
+                                                       ng-model="raw.sec_name" ng-value="raw.sec_name"
+                                                       class="form-control" placeholder="contact person"
+                                                       name="contact_person">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Address</label>
+                                                <input type="text" id="third-name-column"
+                                                       ng-model="raw.third_name" ng-value="raw.third_name"
+                                                       class="form-control" placeholder="third Name"
+                                                       name="lname-column">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">First Telephone</label>
+                                                <input type="text" ng-model="raw.last_name"
+                                                       id="last-name-column" ng-value="raw.last_name"
+                                                       class="form-control" placeholder="082838231"
+                                                       name="First_Telephone">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Sec Telephone</label>
+                                                <input type="text" ng-model="raw.last_name"
+                                                       id="Sec_Telephone_column" ng-value="raw.last_name"
+                                                       class="form-control" placeholder="082838231"
+                                                       name="Sec_Telephone">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="email-id-column">Email</label>
+                                                    <input type="email" id="email-id-column" value="{{raw.email}}"
+                                                           ng-value="raw.email"
+
+                                                           ng-model="raw.email" class="form-control"
+                                                           placeholder="Email" name="email-id-column">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group" data-select2-id="5">
+                                                <label for="select-Country">Country</label>
+                                                <div class="position-relative" data-select2-id="4">
+
+                                                    <select ng-model="raw.country"
+                                                            class="form-control select2 select2-hidden-accessible"
+                                                            id="select-country" name="select-country"
+                                                            data-select2-id="select-country" tabindex="-1"
+                                                            aria-hidden="true">
+                                                        <option ng-repeat="country in countries" value="{{country.id}}"
+                                                                ng-selected="country.id===raw.country_id"
+                                                                data-select2-id="2">{{country.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <button type="reset" ng-click="updatePersonalSponsor()"
+                                                class="btn btn-primary mr-1 waves-effect waves-float waves-light">
+                                            Update
+                                        </button>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+</div>
+<!-- Account Tab starts -->
+</section>
+
+</div>
+<!-- END: Content-->
+
+
+<!-- BEGIN: Page JS-->
+<!-- END: Page JS-->
+

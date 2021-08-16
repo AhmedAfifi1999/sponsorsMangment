@@ -1,4 +1,4 @@
-var App = angular.module('login', ['ngRoute']);
+var App = angular.module('login',  ['ui.router', 'ngResource']);
 App.controller('loginController', function ($scope, $http) {
 
     $scope.login = function () {

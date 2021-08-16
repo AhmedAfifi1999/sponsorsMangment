@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 });
 
+Route::post('send/sms/personalSponsor',[SMSController::class,'sendMassagePersonalSponsor'])->name('send.personalSponsor');
 Route::put('updatePersonalSponsorsInfo/{id}', [pSponsor::class, 'update']);
 
 Route::group(['middleware' => ['auth:personal_sponsor']], function () {

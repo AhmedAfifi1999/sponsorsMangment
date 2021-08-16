@@ -13,17 +13,6 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/home.html',
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
-            // resolve: {
-            //     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //         return $ocLazyLoad.load({
-            //             name: 'MyApp',
-            //             files: [
-            //                 'app/modules/admin/controllers/home.js',
-            //                 'app.js'
-            //             ]
-            //         });
-            //     }]
-            // }
         })
         .state('search', {
             url: '/search',
@@ -31,6 +20,14 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/search.html',
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
+        })
+
+        .state('managementEnterpriseSponsor', {
+            url: '/managementEnterpriseSponsor/:id',
+            params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementEnterpriseSponsor.html',
+            // data: {pageTitle: 'HOME'},
+            controller: 'updateEnterPriseSponsorCtrl',
         })
         .state('managementPersonalSponsor', {
             url: '/managementPersonalSponsor.html/:id',
@@ -166,18 +163,9 @@ Module.controller('PersonalFilterCtrl', function ($scope, $http) {
         }, function (response) {
             if (response['status'] === 401) {
                 window.location.href = "http://sponsorsmanagement.ps/login.html";
-
             }
             console.log(response)
         });
-
-
-    };
-
-    $scope.management_personal_sponsor = function (id) {
-        window.location.href = "http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html?id=" + id;
-        console.log(id);
-
     };
 
 });
@@ -212,11 +200,6 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 
     };
 
-
-    $scope.management_enterprise_sponsor = function (id) {
-        window.location.href = "managementPersonalSponsor.html/" + id;
-        console.log(id);
-    };
 
 });
 
@@ -289,4 +272,21 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
             //
         });
     };
+
+    $scope.sms = function () {
+        var url = 'http://sponsorsmanagement.ps/api/updatePersonalSponsorsInfo/' + $scope.id,
+            data = $scope.id,
+            config = 'contenttype';
+        $http.post(url, data, config).then(function (response) {
+            console.log('Send Message Successfully');
+        }, function (response) {
+            //
+        });
+
+    }
+});
+
+Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $stateParams) {
+
+
 });
