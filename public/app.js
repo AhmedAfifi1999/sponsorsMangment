@@ -278,14 +278,13 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         });
     }
     locationInfo();
-    $scope.MpersonalSponsor = {};
     $scope.updatePersonalSponsor = function () {
-        console.log($scope.MpersonalSponsor);
-        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' + $scope.id,
-            data = $scope.MpersonalSponsor,
+        console.log($scope.raw);
+        var url = 'http://sponsorsmanagement.ps/api/updatePersonalSponsorsInfo/' + $scope.id,
+            data = $scope.raw,
             config = 'contenttype';
         $http.put(url, data, config).then(function (response) {
-            console.log(response);
+            console.log('Updated Successfully');
         }, function (response) {
             //
         });

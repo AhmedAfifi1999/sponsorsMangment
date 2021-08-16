@@ -22,13 +22,16 @@
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="identity" name="customRadio"
                                                            class="custom-control-input"
-                                                           ng-model="MpersonalSponsor.identity" checked="">
+                                                           ng-model="raw.identification_number_type"
+                                                           value="identity"
+                                                           ng-checked="raw.identification_number_type==='identity'">
                                                     <label class="custom-control-label" for="identity">identity</label>
                                                 </div>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="passport" name="customRadio"
-                                                           ng-model="MpersonalSponsor.passport"
-                                                           class="custom-control-input">
+                                                           ng-model="raw.identification_number_type"
+                                                           class="custom-control-input" value="passport"
+                                                           ng-checked="raw.identification_number_type==='passport'">
                                                     <label class="custom-control-label" for="passport">passport</label>
                                                 </div>
 
@@ -40,10 +43,9 @@
                                                 <label for="first-name-column">identity number</label>
                                                 <input type="text" id="identity_id-column" class="form-control"
                                                        placeholder="identity number"
-                                                       value="{{raw.identification_number}}"
                                                        ng-value="raw.identification_number"
-                                                       ng-model="MpersonalSponsor.identity_number"
-                                                       name="identity-number-column">
+                                                       ng-model="raw.identity_number"
+                                                       name="identification_number">
                                             </div>
                                         </div>
 
@@ -52,7 +54,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">First Name</label>
                                                 <input type="text" id="first-name-column"
-                                                       ng-model="MpersonalSponsor.first_name" ng-value="raw.first_name"
+                                                       ng-model="raw.first_name" ng-value="raw.first_name"
                                                        class="form-control" name="first_name">
                                             </div>
                                         </div>
@@ -60,7 +62,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">sec Name</label>
                                                 <input type="text" id="sec-name-column"
-                                                       ng-model="MpersonalSponsor.sec_name" ng-value="raw.sec_name"
+                                                       ng-model="raw.sec_name" ng-value="raw.sec_name"
                                                        class="form-control" placeholder="sec Name" name="lname-column">
                                             </div>
                                         </div>
@@ -68,7 +70,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">third Name</label>
                                                 <input type="text" id="third-name-column"
-                                                       ng-model="MpersonalSponsor.third_name" ng-value="raw.third_name"
+                                                       ng-model="raw.third_name" ng-value="raw.third_name"
                                                        class="form-control" placeholder="third Name"
                                                        name="lname-column">
                                             </div>
@@ -76,7 +78,7 @@
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Last Name</label>
-                                                <input type="text" ng-model="MpersonalSponsor.last_name"
+                                                <input type="text" ng-model="raw.last_name"
                                                        id="last-name-column" ng-value="raw.last_name"
                                                        class="form-control" placeholder="Last Name" name="lname-column">
                                             </div>
@@ -85,7 +87,7 @@
                                             <div class="form-group" data-select2-id="5">
                                                 <label for="select-Governorate">Governorate</label>
                                                 <div class="position-relative" data-select2-id="4">
-                                                    <select ng-model="MpersonalSponsor.governorate"
+                                                    <select ng-model="raw.governorate"
                                                             class="form-control select2 select2-hidden-accessible"
                                                             id="select-Governorate" name="select-country"
                                                             data-select2-id="select-country" tabindex="-1"
@@ -105,7 +107,7 @@
                                             <div class="form-group" data-select2-id="5">
                                                 <label for="select-City">City</label>
                                                 <div class="position-relative" data-select2-id="4">
-                                                    <select ng-model="MpersonalSponsor.city"
+                                                    <select ng-model="raw.city"
                                                             class="form-control select2 select2-hidden-accessible"
                                                             id="select-city" name="select-city"
                                                             data-select2-id="select-country" tabindex="-1"
@@ -124,7 +126,7 @@
                                             <div class="form-group" data-select2-id="5">
                                                 <label for="select-Neighborhood">Neighborhood</label>
                                                 <div class="position-relative" data-select2-id="4">
-                                                    <select ng-model="MpersonalSponsor.neighborhood"
+                                                    <select ng-model="raw.neighborhood"
                                                             class="form-control select2 select2-hidden-accessible"
                                                             id="select-Neighborhood" name="select-Neighborhood"
                                                             data-select2-id="select-country" tabindex="-1"
@@ -144,7 +146,7 @@
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="country-floating">location details</label>
-                                                <input type="text" ng-model="MpersonalSponsor.location_details"
+                                                <input type="text" ng-model="raw.location_details"
                                                        id="country-floating" class="form-control" ng-value="raw.details"
                                                        name="location_details" placeholder="location details">
                                             </div>
@@ -152,7 +154,7 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">Telephone</label>
-                                                <input type="text" ng-model="MpersonalSponsor.telephone" id="telephone"
+                                                <input type="text" ng-model="raw.telephone" id="telephone"
                                                        ng-value="raw.telephone" class="form-control"
                                                        placeholder="telephone" name="telephone-column">
                                             </div>
@@ -160,7 +162,7 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Phone</label>
-                                                <input type="text" ng-model="MpersonalSponsor.phone"
+                                                <input type="text" ng-model="raw.phone"
                                                        ng-value="raw.phone_number" id="phone-column"
                                                        class="form-control" placeholder="Phone" name="phone-column">
                                             </div>
@@ -171,7 +173,7 @@
                                                 <input type="email" id="email-id-column" value="{{raw.email}}"
                                                        ng-value="raw.email"
 
-                                                       ng-model="MpersonalSponsor.email" class="form-control"
+                                                       ng-model="raw.email" class="form-control"
                                                        placeholder="Email" name="email-id-column">
                                             </div>
                                         </div>
@@ -180,7 +182,7 @@
                                             <div class="form-group" data-select2-id="5">
                                                 <label for="select-Nationality">Nationality</label>
                                                 <div class="position-relative" data-select2-id="4">
-                                                    <select ng-model="MpersonalSponsor.nationality"
+                                                    <select ng-model="raw.nationality"
                                                             class="form-control select2 select2-hidden-accessible"
                                                             id="select-Nationality" name="select-Nationality"
                                                             data-select2-id="select-Nationality" tabindex="-1"
@@ -201,7 +203,7 @@
                                                 <label for="select-Country">Country</label>
                                                 <div class="position-relative" data-select2-id="4">
 
-                                                    <select ng-model="MpersonalSponsor.country"
+                                                    <select ng-model="raw.country"
                                                             class="form-control select2 select2-hidden-accessible"
                                                             id="select-country" name="select-country"
                                                             data-select2-id="select-country" tabindex="-1"

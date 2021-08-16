@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 });
 
-Route::post('updatePersonalSponsorsInfo', [pSponsor::class, 'update']);
+Route::put('updatePersonalSponsorsInfo/{id}', [pSponsor::class, 'update']);
 
 Route::group(['middleware' => ['auth:personal_sponsor']], function () {
     Route::get('showPersonalSponsorsInfo', [pSponsor::class, 'index']);

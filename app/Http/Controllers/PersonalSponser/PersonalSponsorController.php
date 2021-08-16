@@ -28,9 +28,9 @@ class PersonalSponsorController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $id = Auth::guard('personal_sponsor')->user()->id;
+//        $id = Auth::guard('personal_sponsor')->user()->id;
 
         $user = personalSponsor::find($id);
         $data = $user->update($request->all());
