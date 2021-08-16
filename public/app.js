@@ -287,6 +287,34 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
 });
 
 Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $stateParams) {
+    $scope.id = $stateParams.id;
+    $scope.raw = {};
+    $scope.countries;
+    getEnterPriseSponsor = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/enterprise/' + $scope.id,
+            data: 'parameters'
+        }).then(function success(response) {
+            console.log(response['data']['data']);
+            $scope.raw = response['data']['data'];
 
+        }, function error(response) {
+
+        });
+    };
+    getEnterPriseSponsor();
+    locationInfo = function () {
+
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/location'
+        }).then(function success(response) {
+            console.log(response['data'].cities);
+            $scope.countries = response['data'].countries;
+        }, function error(response) {
+        });
+    }
+    locationInfo();
 
 });

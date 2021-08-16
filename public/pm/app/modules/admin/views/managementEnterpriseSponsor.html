@@ -22,7 +22,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">Name</label>
                                                 <input type="text" id="first-name-column"
-                                                       ng-model="raw.first_name" ng-value="raw.first_name"
+                                                       ng-model="raw.name" ng-value="raw.name"
                                                        class="form-control" name="Name" placeholder="Name">
                                             </div>
                                         </div>
@@ -30,7 +30,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">contact person</label>
                                                 <input type="text" id="sec-name-column"
-                                                       ng-model="raw.sec_name" ng-value="raw.sec_name"
+                                                       ng-model="raw.contact_person" ng-value="raw.contact_person"
                                                        class="form-control" placeholder="contact person"
                                                        name="contact_person">
                                             </div>
@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">Address</label>
                                                 <input type="text" id="third-name-column"
-                                                       ng-model="raw.third_name" ng-value="raw.third_name"
+                                                       ng-model="raw.address" ng-value="raw.address"
                                                        class="form-control" placeholder="third Name"
                                                        name="lname-column">
                                             </div>
@@ -47,8 +47,8 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">First Telephone</label>
-                                                <input type="text" ng-model="raw.last_name"
-                                                       id="last-name-column" ng-value="raw.last_name"
+                                                <input type="text" ng-model="raw.first_telephone"
+                                                       id="last-name-column" ng-value="raw.first_telephone"
                                                        class="form-control" placeholder="082838231"
                                                        name="First_Telephone">
                                             </div>
@@ -56,8 +56,8 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Sec Telephone</label>
-                                                <input type="text" ng-model="raw.last_name"
-                                                       id="Sec_Telephone_column" ng-value="raw.last_name"
+                                                <input type="text" ng-model="raw.sec_telephone"
+                                                       id="Sec_Telephone_column" ng-value="raw.sec_telephone"
                                                        class="form-control" placeholder="082838231"
                                                        name="Sec_Telephone">
                                             </div>
@@ -70,9 +70,8 @@
                                                     <label for="email-id-column">Email</label>
                                                     <input type="email" id="email-id-column" value="{{raw.email}}"
                                                            ng-value="raw.email"
-
                                                            ng-model="raw.email" class="form-control"
-                                                           placeholder="Email" name="email-id-column">
+                                                           placeholder="Email" name="email">
                                                 </div>
                                             </div>
                                         </div>

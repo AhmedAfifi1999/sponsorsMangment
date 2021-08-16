@@ -36,7 +36,13 @@ class EnterpriseController extends Controller
      */
     public function show($id)
     {
-        return enterpriseSponsor::find($id);
+        $enterpriseSponor = enterpriseSponsor::find($id);
+        return response()->json([
+            'status' => 1,
+            'massage' => 'Show is Successfully',
+            'data' => $enterpriseSponor
+
+        ]);
     }
 
 
