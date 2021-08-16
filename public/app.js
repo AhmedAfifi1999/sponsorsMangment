@@ -317,4 +317,18 @@ Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $state
     }
     locationInfo();
 
+    $scope.updateEnterpriseSPonsor=function (){
+
+        console.log($scope.raw);
+        var url = 'http://sponsorsmanagement.ps/api/enterprise/' + $scope.id,
+            data = $scope.raw,
+            config = 'contenttype';
+        $http.put(url, data, config).then(function (response) {
+            console.log('Updated Successfully');
+        }, function (response) {
+            //
+        });
+
+    };
+
 });
