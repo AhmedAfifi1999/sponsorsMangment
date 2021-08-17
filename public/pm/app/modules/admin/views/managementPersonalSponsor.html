@@ -10,7 +10,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Guaranteed info</h4>
+                                <h4 class="card-title">Personal Sponsor info</h4>
                             </div>
 
 
@@ -225,14 +225,39 @@
 
                                                     <div class="form-modal-ex">
                                                         <!-- Button trigger modal -->
-                                                        <button id="sendSmsBtn" type="button"
-                                                                class="btn btn-primary waves-effect"
-                                                                data-toggle="modal" data-target="#inlineForm">
-                                                            Send SMS
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#exampleModal">
+                                                            Launch demo modal
                                                         </button>
+
                                                         <!-- Modal -->
-                                                        <div id="sendSmsModal" class="sms-modal">
-                                                            <p>this is test modal</p>
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                             role="dialog" aria-labelledby="exampleModalLabel"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            Modal title</h5>
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        ...
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                                data-dismiss="modal">Close
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-primary">
+                                                                            Save changes
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -257,8 +282,130 @@
                 </div>
             </section>
 
+
         </div>
         <!-- Account Tab starts -->
+    </section>
+
+    <section id="Guaranteed ">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Guaranteed info</h4>
+                    </div>
+                    <div class="card-body">
+                        <form class="form">
+                            <div class="row">
+
+                                <div class="col-md-3 col-12">
+                                    <div class="demo-inline-spacing">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="monthly" name="warranty_type"
+                                                   class="custom-control-input"
+                                                   ng-model="raw.warranty_type"
+                                                   value="monthly"
+                                                   checked ng-checked="monthly">
+                                            <label class="custom-control-label" for="monthly">monthly</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="yearly" name="warranty_type"
+                                                   ng-model="raw.warranty_type"
+                                                   class="custom-control-input" value="yearly">
+                                            <label class="custom-control-label" for="yearly">yearly</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group" data-select2-id="5">
+                                        <div class="position-relative" data-select2-id="4">
+                                            <select ng-model="raw.governorate"
+                                                    class="form-control select2 select2-hidden-accessible"
+                                                    id="select-Governoratew" name="select-country"
+                                                    data-select2-id="select-country" tabindex="-1"
+                                                    aria-hidden="true">
+                                                <option>temp</option>
+                                                <option ng-repeat="governorate in governorates"
+                                                        ng-selected="governorate.id===raw.governorate_id"
+                                                        value="{{governorate.id}}" data-select2-id="2">
+                                                    {{governorate.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <div class="form-group" data-select2-id="5">
+                                        <button class="btn btn-primary mr-1 waves-effect waves-float waves-light">
+                                            search
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <button class="btn btn-primary">add</button>
+                                </div>
+
+                                <div class="row" id="table-responsive">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Responsive tables</h4>
+                                            </div>
+                                            <div class="card-body">
+
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table mb-0">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col" class="text-nowrap">#</th>
+                                                        <th scope="col" class="text-nowrap">Name</th>
+                                                        <th scope="col" class="text-nowrap">Type</th>
+                                                        <th scope="col" class="text-nowrap">Add date</th>
+                                                        <th scope="col" class="text-nowrap">Operation</th>
+                                                        <th scope="col" class="text-nowrap">Heading 5</th>
+                                                        <th scope="col" class="text-nowrap">Heading 6</th>
+                                                        <th scope="col" class="text-nowrap">Heading 7</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="text-nowrap">1</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                        <td class="text-nowrap">Table cell</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
 </div>
