@@ -285,6 +285,32 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
             //
         });
     }
+
+    $scope.currencies={};
+    getCurrency = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/currency',
+        }).then(function success(response) {
+            $scope.currencies = response['data']['data'];
+        }, function error(response) {
+
+        });
+    }
+    getCurrency();
+    // $scope.createGuaranteed;
+    $scope.AddGuaranteed = function () {
+        console.log($scope.PFilterData)
+        var url = 'http://sponsorsmanagement.ps/api/store/personal/guaranteed/' + $scope.id,
+            data = $scope.createGuaranteed,
+            config = 'contenttype';
+        $http.post(url, data, config).then(function (response) {
+            $scope.PFilterGuaranteed = response['data']['data'];
+            console.log(response['data']['data']);
+        }, function (response) {
+            //
+        });
+    }
 });
 
 Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $stateParams) {
