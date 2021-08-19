@@ -6,7 +6,6 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
     $urlRouterProvider.otherwise("/home");
 
     $stateProvider
-
         .state('home', {
             url: '/home',
             params: {type: 'users', id: null},
@@ -36,30 +35,17 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
         });
-
     $urlRouterProvider.otherwise('/home');
-
 }]);
 Module.controller('AppController', function ($scope, $http) {
-
-
 });
-
 Module.controller('FooterController', function ($scope, $http) {
-
-
 });
 Module.controller('MeanMenuController', function ($scope, $http) {
-
-
 });
 Module.controller('HeaderController', function ($scope, $http) {
-
-
 });
-
 Module.controller('allInfoCtrl', function ($scope, $http) {
-
     $scope.cities;
     $scope.countries;
     $scope.governorates;
@@ -68,7 +54,6 @@ Module.controller('allInfoCtrl', function ($scope, $http) {
     $scope.organize = {};
     $scope.personal = {};
     locationInfo = function () {
-
         $http({
             method: 'GET',
             url: 'http://sponsorsmanagement.ps/api/location'
@@ -84,7 +69,6 @@ Module.controller('allInfoCtrl', function ($scope, $http) {
         });
     }
     locationInfo();
-
     $scope.CreateNewPersonalSponsor = function () {
         $scope.personal.password = "123";
         $scope.personal.password_confirmation = "123";
@@ -93,15 +77,11 @@ Module.controller('allInfoCtrl', function ($scope, $http) {
         var url = 'http://sponsorsmanagement.ps/api/personalSponsor/register',
             data = $scope.personal,
             config = 'content_type';
-
-
         $http.post(url, data, config).then(function (response) {
             console.log("insert Is Successfully")
         }, function (response) {
-
             console.log(response)
         });
-
     };
 
     $scope.myOrgFunc = function () {
@@ -121,7 +101,6 @@ Module.controller('allInfoCtrl', function ($scope, $http) {
 
 
     };
-
 
 });
 
@@ -206,15 +185,12 @@ Module.controller('OrganizeFilterCtrl', function ($scope, $http) {
 //---- Manage Personal Sponsor "section"
 
 Module.controller('ManagePersonalCtrl', function ($scope, $http) {
-
-
 });
 
 Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $stateParams) {
-
     $scope.id = $stateParams.id;
     console.log('id = ' + $scope.id);
-
+    $scope.guaranteeds = {};
     $scope.raw = {};
     getPersonalSponsor = function () {
         $http({
@@ -272,7 +248,33 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
             //
         });
     };
+    getGuaranteeds = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/show/personal/guaranteed/' + $scope.id,
+        }).then(function success(response) {
+            $scope.guaranteeds = response['data']['data'];
+            console.log($scope.guaranteed);
+        }, function error(response) {
 
+        });
+    }
+    $scope.PFilterGuaranteed = {};
+    $scope.getPFilterdGuaranteed = function () {
+        console.log($scope.PFilterData)
+        var url = 'http://sponsorsmanagement.ps/api/search/personal/' + $scope.id + '/guaranteed',
+            data = $scope.PFilterData,
+            config = 'contenttype';
+        $http.put(url, data, config).then(function (response) {
+            $scope.PFilterGuaranteed = response['data']['data'];
+            console.log($scope.PFilterGuaranteed);
+        }, function (response) {
+            //
+        });
+
+    };
+    $scope.getPFilterdGuaranteed();
+    getGuaranteeds();
     $scope.sms = function () {
         var url = 'http://sponsorsmanagement.ps/api/updatePersonalSponsorsInfo/' + $scope.id,
             data = $scope.id,
@@ -282,7 +284,6 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         }, function (response) {
             //
         });
-
     }
 });
 
@@ -317,7 +318,7 @@ Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $state
     }
     locationInfo();
 
-    $scope.updateEnterpriseSPonsor=function (){
+    $scope.updateEnterpriseSPonsor = function () {
 
         console.log($scope.raw);
         var url = 'http://sponsorsmanagement.ps/api/enterprise/' + $scope.id,

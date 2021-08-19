@@ -11,6 +11,7 @@ class GuaranteedController extends Controller
 
     public function index()
     {
+//        ->with('personalSponsor')
         $guaranteeds = Guaranteed::all();
 
         return response()->json([
@@ -92,12 +93,12 @@ class GuaranteedController extends Controller
     public function edit($id)
     {
         $guaranteed = Guaranteed::find($id);
-        if($guaranteed!=null){
-        return response()->json([
-            'status' => 1,
-            'data' => $guaranteed,
-            'massage' => 'successfully'
-        ]);
+        if ($guaranteed != null) {
+            return response()->json([
+                'status' => 1,
+                'data' => $guaranteed,
+                'massage' => 'successfully'
+            ]);
         }
 
     }
@@ -159,5 +160,36 @@ class GuaranteedController extends Controller
             'status' => 1,
             'message' => 'deleted successfully'
         ], 204);
+    }
+
+    public function personalFilter(Request $request, $id)
+    {
+
+        $guaranteeds = Guaranteed::with(['personalSponsor'])
+            ->where('personal_sponsor_id', '=', $id)
+            ->orderByDesc('created_at');
+
+
+        if (isset($request->warranty_type))
+            $guaranteeds = $guaranteeds->where('warranty_type', 'like', '%' . $request->warranty_type . '%');
+
+        if (isset($request->guaranteed_id))
+            $guaranteeds = $guaranteeds->where('id', $request->guaranteed_id);
+
+        $guaranteeds = $guaranteeds->get();
+
+        return response()->json([
+            'data' => $guaranteeds,
+        ]);
+    }
+
+    public function personalGuaranteed($id)
+    {
+        $guaranteeds = Guaranteed::where('personal_sponsor_id', '=', $id)->get();;
+        return response()->json([
+            'status' => 1,
+            'data' => $guaranteeds,
+            'massage' => 'successfully'
+        ]);
     }
 }

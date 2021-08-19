@@ -303,14 +303,14 @@
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="monthly" name="warranty_type"
                                                    class="custom-control-input"
-                                                   ng-model="raw.warranty_type"
+                                                   ng-model="PFilterData.warranty_type"
                                                    value="monthly"
                                                    checked ng-checked="monthly">
                                             <label class="custom-control-label" for="monthly">monthly</label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="yearly" name="warranty_type"
-                                                   ng-model="raw.warranty_type"
+                                                   ng-model="PFilterData.warranty_type"
                                                    class="custom-control-input" value="yearly">
                                             <label class="custom-control-label" for="yearly">yearly</label>
                                         </div>
@@ -322,16 +322,15 @@
                                 <div class="col-md-4 col-12">
                                     <div class="form-group" data-select2-id="5">
                                         <div class="position-relative" data-select2-id="4">
-                                            <select ng-model="raw.governorate"
+                                            <select ng-model="PFilterData.guaranteed_id"
                                                     class="form-control select2 select2-hidden-accessible"
                                                     id="select-Governoratew" name="select-country"
                                                     data-select2-id="select-country" tabindex="-1"
                                                     aria-hidden="true">
-                                                <option>temp</option>
-                                                <option ng-repeat="governorate in governorates"
-                                                        ng-selected="governorate.id===raw.governorate_id"
-                                                        value="{{governorate.id}}" data-select2-id="2">
-                                                    {{governorate.name}}
+                                                <option value="">all</option>
+                                                <option ng-repeat="guaranteed in guaranteeds"
+                                                        value="{{guaranteed.id}}" data-select2-id="2">
+                                                    {{guaranteed.name}}
                                                 </option>
                                             </select>
                                         </div>
@@ -339,7 +338,8 @@
                                 </div>
                                 <div class="col-md-2 col-12">
                                     <div class="form-group" data-select2-id="5">
-                                        <button class="btn btn-primary mr-1 waves-effect waves-float waves-light">
+                                        <button ng-click="getPFilterdGuaranteed()"
+                                                class="btn btn-primary mr-1 waves-effect waves-float waves-light">
                                             search
                                         </button>
                                     </div>
@@ -366,30 +366,16 @@
                                                         <th scope="col" class="text-nowrap">Type</th>
                                                         <th scope="col" class="text-nowrap">Add date</th>
                                                         <th scope="col" class="text-nowrap">Operation</th>
-                                                        <th scope="col" class="text-nowrap">Heading 5</th>
-                                                        <th scope="col" class="text-nowrap">Heading 6</th>
-                                                        <th scope="col" class="text-nowrap">Heading 7</th>
+
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td class="text-nowrap">1</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                        <td class="text-nowrap">Table cell</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
-                                                        <td>Table cell</td>
+                                                    <tr ng-repeat="guaranteed in PFilterGuaranteed">
+                                                        <td>{{guaranteed.id}}</td>
+                                                        <td>{{guaranteed.name}}</td>
+                                                        <td>{{guaranteed.warranty_type}}</td>
+                                                        <td>{{guaranteed.add_data}}</td>
+                                                        <td>two btn</td>
                                                     </tr>
 
                                                     </tbody>

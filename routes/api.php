@@ -31,7 +31,8 @@ Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.st
 Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
 */
 Route::resource('Guaranteed', GuaranteedCtrl::class);
-
+Route::put('search/personal/{id}/guaranteed', [GuaranteedCtrl::class, 'personalFilter']);
+Route::get('show/personal/guaranteed/{id}', [GuaranteedCtrl::class, 'personalGuaranteed']);
 
 //-------
 

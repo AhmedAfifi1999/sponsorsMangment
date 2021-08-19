@@ -15,5 +15,9 @@ class Guaranteed extends Model
     {
         return $this->belongsTo(Currency::class, 'currency_id');
     }
+    public function personalSponsor()
+    {
+        return $this->belongsTo(personalSponsor::class, 'personal_sponsor_id');
+    }
 }
 
