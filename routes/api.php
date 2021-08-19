@@ -14,6 +14,7 @@ use App\Http\Controllers\GuaranteedController;
 use App\Http\Controllers\Enterprise\EnterpriseUserController;
 use App\Http\Controllers\Enterprise\EnterpriseController;
 use App\Http\Controllers\Guaranteed\GuaranteedController as GuaranteedCtrl;
+use App\Http\Controllers\Guaranteed\PersonalSponsorGuaranteedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,9 @@ Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.st
 Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
 */
 Route::resource('Guaranteed', GuaranteedCtrl::class);
-Route::put('search/personal/{id}/guaranteed', [GuaranteedCtrl::class, 'personalFilter']);
-Route::get('show/personal/guaranteed/{id}', [GuaranteedCtrl::class, 'personalGuaranteed']);
+Route::put('search/personal/{id}/guaranteed', [PersonalSponsorGuaranteedController::class, 'search']);
+Route::get('show/personal/guaranteed/{id}', [PersonalSponsorGuaranteedController::class, 'index']);
+Route::post('store/personal/guaranteed/{id}', [PersonalSponsorGuaranteedController::class, 'store']);
 
 //-------
 
