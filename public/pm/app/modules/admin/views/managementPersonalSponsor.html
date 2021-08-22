@@ -459,14 +459,22 @@
                                                         <td>{{guaranteed.warranty_type}}</td>
                                                         <td>{{guaranteed.add_data}}</td>
                                                         <td>
-                                                            <a class="btn btn-primary btn-sm " data-toggle="modal" data-target="#editGuaranteedModal" ng-click="showGuaranteed(guaranteed.id)">Edit</a>
+                                                            <a class="btn btn-primary btn-sm " data-toggle="modal"
+                                                               data-target="#editGuaranteedModal"
+                                                               ng-click="showGuaranteed(guaranteed.id)">Edit</a>
 
-                                                            <div class="modal fade" id="editGuaranteedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal fade" id="editGuaranteedModal"
+                                                                 tabindex="-1" role="dialog"
+                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="editGuaranteedLabel">Modal title</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <h5 class="modal-title"
+                                                                                id="editGuaranteedLabel">Modal
+                                                                                title</h5>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
@@ -476,46 +484,67 @@
                                                                             <form>
                                                                                 <div class="form-group">
                                                                                     <label for="name">Name</label>
-                                                                                    <input type="text" class="form-control"
-                                                                                           id="guaranteedName" ng-model="Guaranteed.name"
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           id="guaranteedName"
+                                                                                           ng-model="Guaranteed.name"
                                                                                            aria-describedby="emailHelp"
                                                                                            placeholder="Enter Name">
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    <label for="name">Warranty Type</label>
-                                                                                    <div class="custom-control custom-radio">
+                                                                                    <label for="name">Warranty
+                                                                                        Type</label>
+                                                                                    <div
+                                                                                        class="custom-control custom-radio">
                                                                                         <input type="radio"
                                                                                                ng-model="Guaranteed.warranty_type"
-                                                                                               id="customRadio3" value="monthly"
+                                                                                               id="customRadio3"
+                                                                                               value="monthly"
                                                                                                name="warranty_type"
-                                                                                               class="custom-control-input" checked>
-                                                                                        <label class="custom-control-label" for="customRadio1">monthly</label>
+                                                                                               class="custom-control-input"
+                                                                                               checked>
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="customRadio1">monthly</label>
                                                                                     </div>
-                                                                                    <div class="custom-control custom-radio">
+                                                                                    <div
+                                                                                        class="custom-control custom-radio">
                                                                                         <input type="radio"
                                                                                                ng-model="Guaranteed.warranty_type"
-                                                                                               id="customRadio4" value="yearly"
+                                                                                               id="customRadio4"
+                                                                                               value="yearly"
                                                                                                name="warranty_type"
                                                                                                class="custom-control-input">
-                                                                                        <label class="custom-control-label" for="customRadio2">yearly</label>
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="customRadio2">yearly</label>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="form-group">
                                                                                     <label for="name">Money</label>
-                                                                                    <input type="number" ng-model="Guaranteed.money"
+                                                                                    <input type="number"
+                                                                                           ng-model="Guaranteed.money"
                                                                                            class="form-control"
-                                                                                           id="guaranteedMoney" aria-describedby="emailHelp" min="1"
+                                                                                           name="money"
+                                                                                           id="guaranteedMoney1"
+                                                                                           aria-describedby="emailHelp"
+                                                                                           min="1"
                                                                                            max="500000"
                                                                                            placeholder="Enter money">
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="name">Currency</label>
-                                                                                    <select ng-model="Guaranteed.currency_id"
-                                                                                            class="custom-select custom-select-mb3">
-                                                                                        <option ng-repeat="currency in currencies" ng-selected="Guaranteed.currency_id===currency.id"
-                                                                                                value="{{currency.id}}">{{currency.name}}
+                                                                                    <select
+                                                                                        ng-model="Guaranteed.currency_id"
+                                                                                        name="currency_id"
+                                                                                        class="custom-select custom-select-mb3">
+                                                                                        <option
+                                                                                            ng-repeat="currency in currencies"
+                                                                                            ng-selected="Guaranteed.currency_id===currency.id"
+                                                                                            value="{{currency.id}}">
+                                                                                            {{currency.name}}
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -525,13 +554,19 @@
 
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary" ng-click="updateGuaranteed(Guaranteed.id)">Save changes</button>
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">Close
+                                                                            </button>
+                                                                            <button type="button"
+                                                                                    class="btn btn-primary"
+                                                                                    ng-click="updateGuaranteed(Guaranteed.id)">
+                                                                                Save changes
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
 
 
                                                             <a class="btn btn-danger btn-sm "

@@ -330,8 +330,14 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
     }
 
     $scope.updateGuaranteed = function (id) {
-        console.log('update successfully')
-    }
+        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' +id,
+            data = $scope.Guaranteed,
+            config = 'contenttype';
+        $http.put(url, data, config).then(function (response) {
+            console.log('Updated Successfully');
+        }, function (response) {
+            //
+        });    }
     $scope.showGuaranteed = function (id) {
         $http({
             method: 'GET',
