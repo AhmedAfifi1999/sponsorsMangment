@@ -34,7 +34,9 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/managementPersonalSponsor.html',
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
-        });
+        })
+
+    ;
     $urlRouterProvider.otherwise('/home');
 }]);
 Module.controller('AppController', function ($scope, $http) {
@@ -286,7 +288,7 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         });
     }
 
-    $scope.currencies={};
+    $scope.currencies = {};
     getCurrency = function () {
         $http({
             method: 'GET',
@@ -304,12 +306,28 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         var url = 'http://sponsorsmanagement.ps/api/store/personal/guaranteed/' + $scope.id,
             data = $scope.createGuaranteed,
             config = 'contenttype';
-        $http.post(url, data, config).then(function (response) {
+        $http.AddGuaranteed()(url, data, config).then(function (response) {
             $scope.PFilterGuaranteed = response['data']['data'];
             console.log(response['data']['data']);
         }, function (response) {
             //
         });
+    }
+
+
+    $scope.deleteGuaranteed = function (id) {
+        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' + id,
+            data = '',
+            config = 'contenttype';
+        $http.delete(url, data, config).then(function (response) {
+
+
+        }, function (response) {
+
+
+        });
+
+
     }
 });
 

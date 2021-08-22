@@ -458,7 +458,12 @@
                                                         <td>{{guaranteed.name}}</td>
                                                         <td>{{guaranteed.warranty_type}}</td>
                                                         <td>{{guaranteed.add_data}}</td>
-                                                        <td>two btn</td>
+                                                        <td>
+                                                            <a class="btn btn-primary btn-sm ">Edit</a>
+                                                            <a class="btn btn-danger btn-sm "
+                                                               ng-click="deleteGuaranteed(guaranteed.id)">Delete</a>
+
+                                                        </td>
                                                     </tr>
 
                                                     </tbody>
