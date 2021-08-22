@@ -74,7 +74,7 @@ class GuaranteedController extends Controller
      */
     public function show($id)
     {
-        $guaranteed = Guaranteed::FindOrFail($id);
+        $guaranteed = Guaranteed::with('currency')->FindOrFail($id);
 
         return response()->json([
             'status' => 1,
@@ -161,7 +161,6 @@ class GuaranteedController extends Controller
             'message' => 'deleted successfully'
         ], 204);
     }
-
 
 
 }

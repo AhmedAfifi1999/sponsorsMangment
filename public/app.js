@@ -314,7 +314,6 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         });
     }
 
-
     $scope.deleteGuaranteed = function (id) {
         var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' + id,
             data = '',
@@ -329,6 +328,22 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
 
 
     }
+
+    $scope.updateGuaranteed = function (id) {
+        console.log('update successfully')
+    }
+    $scope.showGuaranteed = function (id) {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/Guaranteed/' + id,
+        }).then(function success(response) {
+            $scope.Guaranteed = response['data']['data'];
+            console.log($scope.Guaranteed);
+        }, function error(response) {
+
+        });
+    }
+
 });
 
 Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $stateParams) {
