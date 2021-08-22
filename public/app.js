@@ -35,7 +35,20 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             // data: {pageTitle: 'HOME'},
             controller: 'allInfoCtrl',
         })
-
+        .state('addPayment', {
+            url: '/addPayment/:id',
+            params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/addPayment.html',
+            // data: {pageTitle: 'HOME'},
+            controller: 'addPaymentController',
+        })
+        .state('searchPayment', {
+            url: '/searchPayment',
+            params: {type: 'users', id: null},
+            templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/searchPayment.html',
+            // data: {pageTitle: 'HOME'},
+            controller: 'searchPaymentController',
+        })
     ;
     $urlRouterProvider.otherwise('/home');
 }]);
@@ -330,14 +343,15 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
     }
 
     $scope.updateGuaranteed = function (id) {
-        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' +id,
+        var url = 'http://sponsorsmanagement.ps/api/Guaranteed/' + id,
             data = $scope.Guaranteed,
             config = 'contenttype';
         $http.put(url, data, config).then(function (response) {
             console.log('Updated Successfully');
         }, function (response) {
             //
-        });    }
+        });
+    }
     $scope.showGuaranteed = function (id) {
         $http({
             method: 'GET',
