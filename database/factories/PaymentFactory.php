@@ -27,9 +27,10 @@ class PaymentFactory extends Factory
         $personal=personalSponsor::select('id')->inRandomOrder()->first();
         $enterPrise=enterpriseSponsor::select('id')->inRandomOrder()->first();
         $guaranteed=Guaranteed::select('id')->inRandomOrder()->first();
+        $now=date('Y-m-d');
 
-        $start_date = '2015-12-31 00:00:00';
-        $end_date = '2010-01-01 00:00:00';
+        $start_date = '2021-8-31 00:00:00';
+        $end_date = '2021-11-01 00:00:00';
 
         $min = strtotime($start_date);
         $max = strtotime($end_date);
@@ -48,7 +49,7 @@ class PaymentFactory extends Factory
             'enterprise_sponsor_id'=>$enterPrise?$enterPrise:null,
             'personal_sponsor_id'=>$personal?$personal:null,
             'guaranteed_id'=>$guaranteed?$guaranteed:null,
-            'start'=>$start,
+            'start'=>$now,
             'end'=>$end,
 
         ];
