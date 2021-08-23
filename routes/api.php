@@ -16,6 +16,7 @@ use App\Http\Controllers\Enterprise\EnterpriseController;
 use App\Http\Controllers\Guaranteed\GuaranteedController as GuaranteedCtrl;
 use App\Http\Controllers\Guaranteed\PersonalSponsorGuaranteedController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ use App\Http\Controllers\CurrencyController;
 Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.store');
 Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
 */
+
+Route::resource('payment', PaymentController::class);
 Route::resource('Guaranteed', GuaranteedCtrl::class);
 Route::resource('currency', CurrencyController::class);
 Route::put('search/personal/{id}/guaranteed', [PersonalSponsorGuaranteedController::class, 'search']);
