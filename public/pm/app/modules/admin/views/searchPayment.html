@@ -1,3 +1,142 @@
 <div class="app-content content" ng-controller="searchPaymentController">
 
+
+    <div class="card">
+        <div class="card-header border-bottom">
+            <h4 class="card-title">Search Payment</h4>
+        </div>
+        <!--Search Form -->
+        <div class="card-body mt-2">
+            <form class="dt_adv_search" method="POST">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-row mb-1">
+                            <div class="col-lg-6">
+                                <label>payment Number</label>
+                                <input type="number" class="form-control dt-input dt-full-name" data-column="1"
+                                       placeholder="Alaric Beslier" data-column-index="0">
+                            </div>
+                            <div class="col-lg-6">
+                                <label>bill Number</label>
+                                <input type="number" class="form-control dt-input" data-column="2"
+                                       placeholder="demo@example.com" data-column-index="1">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="basicSelect">Sponsor</label>
+                                    <select class="form-control" id="basicSelect">
+                                        <option>IT</option>
+                                        <option>Blade Runner</option>
+                                        <option>Thor Ragnarok</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="basicSelect">Guaranteed</label>
+                                    <select class="form-control" id="basicSelecta">
+                                        <option>IT</option>
+                                        <option>Blade Runner</option>
+                                        <option>Thor Ragnarok</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>from</label>
+                                <input type="date" class="form-control dt-input dt-full-name" data-column="1"
+                                       placeholder="Alaric Beslier" data-column-index="0">
+                            </div>
+                            <div class="col-lg-6">
+                                <label>to</label>
+                                <input type="date" class="form-control dt-input" data-column="2"
+                                       placeholder="demo@example.com" data-column-index="1">
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <button class="btn btn-primary" style="text-align:center" ng-click="">Search</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+        <div class="card-header border-bottom">
+            <h4 class="card-title">Results</h4>
+        </div>
+        <!--Search Form -->
+        <div class="card-body mt-2">
+            <form class="dt_adv_search" method="POST">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-row mb-1">
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="basicSelect">Guaranteed</label>
+                                    <select class="form-control" id="basicSelecwt">
+                                        <option>IT</option>
+                                        <option>Blade Runner</option>
+                                        <option>Thor Ragnarok</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <br>
+                                    <button class="btn btn-primary" id="btn">Search</button>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>bill Number</th>
+                        <th>Sponsor</th>
+                        <th>Date</th>
+                        <th>Total Price</th>
+                        <th>Currency</th>
+                        <th>Guaranteed Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span class="font-weight-bold">React Project</span>
+                        </td>
+                        <td>Ronald Frest</td>
+                        <td>
+                        ss
+                        </td>
+                        <td><span class="badge badge-pill badge-light-success mr-1">Completed</span></td>
+                        <td>
+                          sss
+                        </td>
+                        <td>tt</td>
+                        <td>tt</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
 </div>

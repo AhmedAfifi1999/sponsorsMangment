@@ -11,4 +11,24 @@ class PaymentController extends Controller
 
 
     }
+
+    public function store(Request $request)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+    }
+
+    public function destroy($id)
+    {
+
+    }
+
+    public function guaranteedPayments(Request $request)
+    {
+
+
+    }
 }
