@@ -18,10 +18,6 @@ class PaymentController extends Controller
             ->withCount(['guaranteeds'])->withSum('guaranteeds', 'money');
 
 
-        $payments = Payment::with(['personal_sponsor', 'guaranteeds' => function ($query) {
-            $query->sum('money')
-            ;
-        }]);
 
 //        $data = Payment::with(['guaranteed', 'personal_sponsor'])
 //            ->join('personal_sponsors as p','personal_sponsor_id')
@@ -54,6 +50,21 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'bill_id' => 'required|int',
+            'enterprise_sponsor_id' => 'nullable|int',
+            'personal_sponsor_id' => 'required|int',
+            'start' => 'nullable|date',
+            'end'=>'nullable|date',
+            'guaranteed_id'=>'nullable|int'
+        ]);
+
+        if(!isset($request->start)){
+            $now = date('Y-m-d');
+            $request->merge(['start'=>$now]);
+        }
+
 
     }
 

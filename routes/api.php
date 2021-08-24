@@ -34,7 +34,7 @@ use App\Http\Controllers\GuaranteedPaymentController;
 Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.store');
 Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
 */
-
+Route::post('payment/store',[PaymentController::class,'store']);
 Route::get('personal/sponsors/getAll', [pSponsor::class ,'allSponsors']);
 Route::resource('guaranteed/payments', GuaranteedPaymentController::class);
 Route::resource('payment', PaymentController::class);

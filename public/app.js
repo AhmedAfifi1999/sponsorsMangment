@@ -415,12 +415,38 @@ Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $state
 
 
 Module.controller('addPaymentController', function ($scope, $http, $stateParams) {
-
+    $scope.sponsors = {};
 
     $scope.addpayment = function () {
 
-    }
+        var url = 'http://sponsorsmanagement.ps/api/payment/store',
+            data = $scope.payment,
+            config = 'contenttype';
+        $http.post(url, data, config).then(function (response) {
+            console.log('Updated Successfully');
+        }, function (response) {
+            //
+        });
 
+    }
+    getPersonalSponsor = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/personal/sponsors/getAll',
+            data: 'parameters'
+        }).then(function success(response) {
+            console.log('iam here');
+
+            $scope.sponsors = response['data']['data'];
+
+            console.log($scope.sponsors);
+
+        }, function error(response) {
+
+        });
+    };
+
+    getPersonalSponsor();
 });
 
 Module.controller('searchPaymentController', function ($scope, $http, $stateParams) {
