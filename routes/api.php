@@ -17,6 +17,7 @@ use App\Http\Controllers\Guaranteed\GuaranteedController as GuaranteedCtrl;
 use App\Http\Controllers\Guaranteed\PersonalSponsorGuaranteedController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\GuaranteedPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.st
 Route::put('Guaranteed/{id}', [GuaranteedCtrl::class, 'update'])->name('Guaranteed.update');
 */
 
+Route::get('personal/sponsors/getAll', [pSponsor::class ,'allSponsors']);
+Route::resource('guaranteed/payments', GuaranteedPaymentController::class);
 Route::resource('payment', PaymentController::class);
 Route::resource('Guaranteed', GuaranteedCtrl::class);
 Route::resource('currency', CurrencyController::class);
@@ -77,6 +80,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 
 });
+    Route::get('guaranteed',[GuaranteedController::class,'index']);
 
 Route::post('send/sms/personalSponsor', [SMSController::class, 'sendMassagePersonalSponsor'])->name('send.personalSponsor');
 Route::put('updatePersonalSponsorsInfo/{id}', [pSponsor::class, 'update']);

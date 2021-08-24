@@ -8,20 +8,28 @@ use Illuminate\Http\Request;
 
 class EnterpriseUserController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
 
 
         $request->validate([
-            'name'=>'required',
-            'contact_person'=>'required',
-            'address'=>'required',
-            'first_telephone'=>'required',
-            'sec_telephone'=>'required',
-            'country_id'=>'required',
-            'email' => 'required|email|unique:personal_sponsors',
+            'name' => 'required',
+            'contact_person' => 'required',
+            'address' => 'required',
+            'first_telephone' => 'required',
+            'sec_telephone' => 'required',
+            'country_id' => 'required',
+            'email' => 'required|email|unique:enterprise_sponsors,id',
             'password' => 'required|confirmed'
 
         ]);
+        $email = enterpriseSponsor::where('email', $request->email)->first();
+        if ($email) {
+            return response()->json(
+                ['status' => 0,
+                    'massage' => 'duplicate Email']
+                , 419);
+        }
 
         $user = new enterpriseSponsor();
         $user->name = $request->name;

@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header border-bottom">
-            <h4 class="card-title">Search Payment</h4>
+            <h4 class="card-title">Search personal Sponsor Payment</h4>
         </div>
         <!--Search Form -->
         <div class="card-body mt-2">
@@ -13,52 +13,56 @@
                         <div class="form-row mb-1">
                             <div class="col-lg-6">
                                 <label>payment Number</label>
-                                <input type="number" class="form-control dt-input dt-full-name" data-column="1"
-                                       placeholder="Alaric Beslier" data-column-index="0">
+                                <input type="number" ng-model="payments.id" class="form-control dt-input dt-full-name"
+                                       data-column="1"
+                                       placeholder="Id" data-column-index="0">
                             </div>
                             <div class="col-lg-6">
                                 <label>bill Number</label>
-                                <input type="number" class="form-control dt-input" data-column="2"
-                                       placeholder="demo@example.com" data-column-index="1">
+                                <input type="number" ng-model="payments.bill_id" class="form-control dt-input"
+                                       data-column="2"
+                                       placeholder="Id" data-column-index="1">
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="basicSelect">Sponsor</label>
-                                    <select class="form-control" id="basicSelect">
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                    <select class="form-control" ng-model="payments.personal_sponsor_id"
+                                            id="basicSelect">
+                                        <option value="">without</option>
+                                        <option ng-repeat="sponsor in sponsors" value="{{sponsor.id}}">
+                                            {{sponsor.first_name}} {{sponsor.last_name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="basicSelect">Guaranteed</label>
-                                    <select class="form-control" id="basicSelecta">
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                    <select ng-model="payments.guaranteed_id" class="form-control" id="basicSelecta">
+                                        <option>without</option>
+                                        <option ng-repeat="guaranteed in guaranteeds" value="{{guaranteed.id}}">
+                                            {{guaranteed.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <label>from</label>
-                                <input type="date" class="form-control dt-input dt-full-name" data-column="1"
-                                       placeholder="Alaric Beslier" data-column-index="0">
+                                <input type="date" ng-model="payments.start" class="form-control dt-input dt-full-name"
+                                       data-column="1"
+                                       placeholder="start Date" data-column-index="0">
                             </div>
                             <div class="col-lg-6">
                                 <label>to</label>
-                                <input type="date" class="form-control dt-input" data-column="2"
-                                       placeholder="demo@example.com" data-column-index="1">
+                                <input type="date" ng-model="payments.end" class="form-control dt-input" data-column="2"
+                                       placeholder="end Date" data-column-index="1">
                             </div>
-
-
                         </div>
                     </div>
 
                 </div>
-                <button class="btn btn-primary" style="text-align:center" ng-click="">Search</button>
+                <button class="btn btn-primary" style="text-align:center" ng-click="searchPayment()">Search</button>
 
             </form>
 
@@ -117,20 +121,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr ng-repeat="data in raw">
                         <td>
-                            <span class="font-weight-bold">React Project</span>
+                            <span class="font-weight-bold">{{data.id}}</span>
                         </td>
-                        <td>Ronald Frest</td>
+                        <td>{{data.bill_id}}</td>
                         <td>
-                        ss
+                            {{data.personal_sponsor.first_name}} {{data.personal_sponsor.last_name}}
                         </td>
-                        <td><span class="badge badge-pill badge-light-success mr-1">Completed</span></td>
+                        <td><span class="badge badge-pill badge-light-success mr-1">{{data.start}}</span></td>
                         <td>
-                          sss
+                            {{data.guaranteeds_sum_money}}
                         </td>
-                        <td>tt</td>
-                        <td>tt</td>
+                        <td>{{data.currency_id}}</td>
+                        <td>{{data.guaranteeds_count}}</td>
                     </tr>
                     </tbody>
                 </table>

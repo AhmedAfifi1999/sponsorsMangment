@@ -19,10 +19,9 @@ class CreatePaymentsTable extends Migration
 
             $table->foreignId('enterprise_sponsor_id')->nullable()->constrained('enterprise_sponsors', 'id')->nullOnDelete();
             $table->foreignId('personal_sponsor_id')->nullable()->constrained('personal_sponsors', 'id')->nullOnDelete();
-            $table->foreignId('guaranteed_id')->nullable()->constrained('guaranteeds', 'id')->nullOnDelete();
 
             $table->date('start')->nullable();
-            $table->date('end')->nullable();
+            $table->date('end')->nullable(); //not needed >>
             $table->timestamps();
         });
     }

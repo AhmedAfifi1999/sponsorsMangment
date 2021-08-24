@@ -11,9 +11,9 @@ class Payment extends Model
 
     protected $fillable = ['bill_id', 'enterprise_sponsor_id', 'personal_sponsor_id', 'guaranteed_id', 'start', 'end'];
 
-    public function guaranteed()
+    public function guaranteeds()
     {
-        return $this->belongsTo(Guaranteed::class);
+        return $this->hasMany(Guaranteed::class);
     }
 
     public function personal_sponsor()

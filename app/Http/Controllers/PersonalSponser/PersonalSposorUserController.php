@@ -28,7 +28,7 @@ class PersonalSposorUserController extends Controller
             'sec_name'=>'required',
             'third_name'=>'required',
             'telephone'=>'required',
-            'email' => 'required|email|unique:personal_sponsors',
+            'email' => 'required|email|unique:personal_sponsors,id',
             'password' => 'required|confirmed'
 
         ]);

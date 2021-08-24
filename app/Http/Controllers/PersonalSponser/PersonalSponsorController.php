@@ -28,6 +28,16 @@ class PersonalSponsorController extends Controller
         ]);
     }
 
+    public function allSponsors()
+    {
+        $personalSponors = personalSponsor::all();
+
+        return response()->json([
+            'status' => 1,
+            'massage' => 'Show is Successfully',
+            'data' => $personalSponors
+        ]);
+    }
     public function update(Request $request,$id)
     {
 //        $id = Auth::guard('personal_sponsor')->user()->id;

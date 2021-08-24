@@ -21,6 +21,8 @@ class CreateGuaranteedsTable extends Migration
             $table->unsignedBigInteger('personal_sponsor_id')->nullable();;
             $table->foreign('personal_sponsor_id')->references('id')->on('personal_sponsors')->nullOnDelete();
             $table->bigInteger('currency_id')->unsigned();
+            $table->foreignId('payment_id')->nullable()->constrained('payments', 'id')->nullOnDelete();
+
             $table->date('add_data');
             $table->timestamps();
         });

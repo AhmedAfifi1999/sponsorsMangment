@@ -11,14 +11,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-row mb-1">
-                            <div class="col-lg-6">
-                                <label>payment Number</label>
-                                <input type="number" class="form-control dt-input dt-full-name" data-column="1"
-                                       placeholder="Alaric Beslier" data-column-index="0">
-                            </div>
+
                             <div class="col-lg-6">
                                 <label>date</label>
-                                <input type="date" class="form-control dt-input" data-column="2"
+                                <input  ng-model="" type="date" class="form-control dt-input" data-column="2"
                                        placeholder="demo@example.com" data-column-index="1">
                             </div>
                             <div class="col-lg-6">
@@ -36,8 +32,11 @@
                                 <input type="text" class="form-control dt-input" data-column="4" placeholder="Balky"
                                        data-column-index="3">
                             </div>
+
                         </div>
                     </div>
+                    <button class="btn btn-primary" ng-click="addpayment()">Save</button>
+
                 </div>
             </form>
         </div>

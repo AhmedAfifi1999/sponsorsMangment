@@ -319,7 +319,7 @@ Module.controller('updatePersonalSponsorCtrl', function ($scope, $http, $statePa
         var url = 'http://sponsorsmanagement.ps/api/store/personal/guaranteed/' + $scope.id,
             data = $scope.createGuaranteed,
             config = 'contenttype';
-        $http.AddGuaranteed()(url, data, config).then(function (response) {
+        $http.post(url, data, config).then(function (response) {
             $scope.PFilterGuaranteed = response['data']['data'];
             console.log(response['data']['data']);
         }, function (response) {
@@ -412,3 +412,68 @@ Module.controller('updateEnterPriseSponsorCtrl', function ($scope, $http, $state
     };
 
 });
+
+
+Module.controller('addPaymentController', function ($scope, $http, $stateParams) {
+
+
+    $scope.addpayment = function () {
+
+    }
+
+});
+
+Module.controller('searchPaymentController', function ($scope, $http, $stateParams) {
+    $scope.raw = {};
+    $scope.sponsors = {};
+    $scope.guaranteeds = {};
+
+    $scope.searchPayment = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/payment',
+            data: $scope.payments,
+        }).then(function success(response) {
+            console.log('final Result');
+
+            $scope.raw = response['data']['payment'];
+            console.log($scope.raw);
+
+        }, function error(response) {
+
+        });
+
+    }
+    getPersonalSponsor = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/personal/sponsors/getAll',
+            data: 'parameters'
+        }).then(function success(response) {
+            console.log('iam here');
+
+            $scope.sponsors = response['data']['data'];
+
+            console.log($scope.sponsors);
+
+        }, function error(response) {
+
+        });
+    };
+
+    getPersonalSponsor();
+
+    getGuaranteeds = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/guaranteed',
+        }).then(function success(response) {
+            $scope.guaranteeds = response['data']['data'];
+            console.log($scope.guaranteeds);
+        }, function error(response) {
+
+        });
+    }
+    getGuaranteeds();
+});
+
