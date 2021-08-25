@@ -11,6 +11,7 @@ class Payment extends Model
 
     protected $fillable = ['bill_id', 'enterprise_sponsor_id', 'personal_sponsor_id', 'guaranteed_id', 'start', 'end'];
 
+    protected $guarded=[];
     public function guaranteeds()
     {
         return $this->hasMany(Guaranteed::class);

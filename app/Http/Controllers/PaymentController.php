@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PaymentsExport;
 use App\Models\Payment;
 use App\Models\personalSponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentController extends Controller
 {
@@ -16,14 +18,6 @@ class PaymentController extends Controller
 
         $payments = Payment::with(['personal_sponsor'])
             ->withCount(['guaranteeds'])->withSum('guaranteeds', 'money');
-
-
-
-//        $data = Payment::with(['guaranteed', 'personal_sponsor'])
-//            ->join('personal_sponsors as p','personal_sponsor_id')
-//            ->where();
-
-//        Abc::selectSub(personalSponsor::select('count(*) as guaranteedNumber, ')->groupBy('col1'), 'a')->count('a.*');
 
         if (isset($request->id))
             $payments = $payments->where('id', $request->id);
@@ -56,13 +50,13 @@ class PaymentController extends Controller
             'enterprise_sponsor_id' => 'nullable|int',
             'personal_sponsor_id' => 'required|int',
             'start' => 'nullable|date',
-            'end'=>'nullable|date',
-            'guaranteed_id'=>'nullable|int'
+            'end' => 'nullable|date',
+            'guaranteed_id' => 'nullable|int'
         ]);
 
-        if(!isset($request->start)){
+        if (!isset($request->start)) {
             $now = date('Y-m-d');
-            $request->merge(['start'=>$now]);
+            $request->merge(['start' => $now]);
         }
 
 
@@ -80,6 +74,13 @@ class PaymentController extends Controller
     public function guaranteedPayments(Request $request)
     {
 
+
+    }
+
+    public function exprot(Request $request)
+    {
+
+        return Excel::download(new PaymentsExport, 'Payments.xlsx');
 
     }
 }

@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 class GuaranteedController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $guaranteeds = Guaranteed::all();
+        $guaranteeds = Guaranteed::with('currency');
+        if (isset($request->name))
+            $guaranteeds = $guaranteeds->where('name', 'like', '%' . $request->name . '%');
+
+        $guaranteeds = $guaranteeds->get();
 
         return response()->json([
             'status' => 1,

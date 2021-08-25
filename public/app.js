@@ -447,6 +447,36 @@ Module.controller('addPaymentController', function ($scope, $http, $stateParams)
     };
 
     getPersonalSponsor();
+    $scope.guaranteeds = {};
+    getGuaranteeds = function () {
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/guaranteed',
+        }).then(function success(response) {
+            $scope.guaranteeds = response['data']['data'];
+            console.log($scope.guaranteeds);
+        }, function error(response) {
+
+        });
+    }
+    getGuaranteeds();
+
+    $scope.searchGuaranteed = function () {
+        console.log('$scope.name');
+
+        console.log($scope.name);
+        $http({
+            method: 'GET',
+            url: 'http://sponsorsmanagement.ps/api/guaranteed',
+            params: {name: $scope.name},
+        }).then(function success(response) {
+            $scope.guaranteeds = response['data']['data'];
+            console.log($scope.guaranteeds);
+        }, function error(response) {
+
+        });
+    }
+
 });
 
 Module.controller('searchPaymentController', function ($scope, $http, $stateParams) {
@@ -495,11 +525,14 @@ Module.controller('searchPaymentController', function ($scope, $http, $statePara
             url: 'http://sponsorsmanagement.ps/api/guaranteed',
         }).then(function success(response) {
             $scope.guaranteeds = response['data']['data'];
+            console.log('getGuaranteeds :::')
             console.log($scope.guaranteeds);
         }, function error(response) {
 
         });
     }
     getGuaranteeds();
+    //----
+
 });
 

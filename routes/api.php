@@ -29,6 +29,8 @@ use App\Http\Controllers\GuaranteedPaymentController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('export',[PaymentController::class,'exprot']);
 //----Guaranteed---
 /*
 Route::post('Guaranteed', [GuaranteedCtrl::class, 'store'])->name('Guaranteed.store');
