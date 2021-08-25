@@ -9,7 +9,7 @@ class Guaranteed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'warranty_type','personal_sponsor_id', 'add_data', 'currency_id', 'money'];
+    protected $fillable = ['name', 'warranty_type','personal_sponsor_id','payment_id', 'add_data', 'currency_id', 'money'];
 
     public function currency()
     {
@@ -18,6 +18,10 @@ class Guaranteed extends Model
     public function personalSponsor()
     {
         return $this->belongsTo(personalSponsor::class, 'personal_sponsor_id');
+    }
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class,'payment_id');
     }
 }
 

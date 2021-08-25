@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Guaranteed;
 use App\Models\Payment;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -14,9 +15,11 @@ class PaymentsExport implements FromCollection, WithMapping, WithHeadings
      */
     public function collection()
     {
-        $payments = Payment::with(['personal_sponsor'])
-            ->withCount(['guaranteeds'])->withSum('guaranteeds', 'money');
-        return $payments->get();
+//        $guaranteeds = Payment::with(['personal_sponsor'])
+//            ->withCount(['guaranteeds'])->withSum('guaranteeds', 'money');
+
+        $guaranteeds = Guaranteed::with(['payment','currency']);
+        return $guaranteeds->get();
     }
 
     public function headings(): array
@@ -25,19 +28,23 @@ class PaymentsExport implements FromCollection, WithMapping, WithHeadings
             'Bill id',
             'Date',
             'Personal Sponsor Id',
-            'Total Money',
-            'Number Of Guaranteed',
+            'Money',
+            'currency',
+            'Guaranteed ID',
+            'Guaranteed Name',
         ];
     }
 
-    public function map($payments): array
+    public function map($guaranteeds): array
     {
         return [
-            $payments->bill_id,
-            $payments->start,
-            $payments->personal_sponsor_id,
-            $payments->guaranteeds_sum_money,
-            $payments->guaranteeds_count
+            $guaranteeds->payment->bill_id,
+            $guaranteeds->payment->start,
+            $guaranteeds->payment->personal_sponsor_id,
+            $guaranteeds->money,
+            $guaranteeds->currency->name,
+            $guaranteeds->id,
+            $guaranteeds->name
         ];
     }
 
