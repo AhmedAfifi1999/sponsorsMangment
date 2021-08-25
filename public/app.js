@@ -36,7 +36,7 @@ Module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             controller: 'allInfoCtrl',
         })
         .state('addPayment', {
-            url: '/addPayment/:id',
+            url: '/addPayment',
             params: {type: 'users', id: null},
             templateUrl: 'http://sponsorsmanagement.ps/pm/app/modules/admin/views/addPayment.html',
             // data: {pageTitle: 'HOME'},
